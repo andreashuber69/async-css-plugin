@@ -1,0 +1,38 @@
+{
+  "name": "async-css-plugin",
+  "author": {
+    "name": "Andreas Huber Dönni"
+  },
+  "keywords": [
+    "async",
+    "css",
+    "webpack",
+    "plugin"
+  ],
+  "description": "Minimal webpack plugin that transforms all links to css files such that they are loaded asynchronously.",
+  "homepage": "https://github.com/andreashuber69/async-css-plugin/blob/master/README.md#--",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andreashuber69/async-css-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andreashuber69/async-css-plugin/issues"
+  },
+  "main": "dist/plugin.js",
+  "types": "dist/plugin.d.ts",
+  "scripts": {
+    "build": "webpack --mode production"
+  },
+  "devDependencies": {
+    "@types/node": "^10.17.14",
+    "@types/webpack": "^4.41.3",
+    "ts-loader": "^6.2.1",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {}
+}

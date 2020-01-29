@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    // Compilation options
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "types": [
+      "node"
+    ],
+    // Generation options
+    "declaration": true,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "module": "esnext",
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "target": "ES6",
+  }
+}
