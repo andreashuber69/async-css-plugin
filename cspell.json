@@ -1,0 +1,21 @@
+{
+    "version": "0.1",
+    "language": "en",
+    "words": [
+        "Andreas",
+        "codebeat"
+    ],
+    "flagWords": [],
+    "dictionaries": [
+        "css",
+        "typescript"
+    ],
+    "ignorePaths": [
+        "**/*.svg",
+        "dist/**",
+        "node_modules/**",
+        "package.json",
+        "package-lock.json",
+        "tsconfig.json"
+    ]
+}

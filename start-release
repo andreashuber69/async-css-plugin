@@ -1,0 +1,19 @@
+#!/bin/bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+pushd $(cd `dirname "${BASH_SOURCE[0]}"` && pwd)
+
+git checkout develop
+git pull
+echo "Creating release branch..."
+VERSION=`npm version patch --no-git-tag-version`
+git checkout .
+git flow release start ${VERSION}
+npm version patch --no-git-tag-version
+git commit -a -m "Start release ${VERSION}"
+git push origin --all
+git push origin --tags
+
+popd
