@@ -1,7 +1,7 @@
 {
   "name": "async-css-plugin",
   "author": {
-    "name": "Andreas Huber Dönni"
+    "name": "Andreas Huber"
   },
   "keywords": [
     "async",
@@ -23,7 +23,8 @@
   "main": "dist/plugin.js",
   "types": "dist/plugin.d.ts",
   "scripts": {
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "ci": "npm run build"
   },
   "devDependencies": {
     "@types/node": "^10.17.14",
@@ -34,5 +35,10 @@
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "files": [
+    "dist/plugin.js",
+    "dist/plugin.js.map",
+    "dist/plugin.d.ts"
+  ]
 }
