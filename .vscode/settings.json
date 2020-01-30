@@ -1,0 +1,14 @@
+{
+  "cSpell.enabledLanguageIds": [
+    "markdown",
+    "plaintext",
+    "shellscript",
+    "typescript",
+    "yaml"
+  ],
+  "cSpell.import": ["../cspell.json"],
+  "files.autoSave": "onFocusChange",
+  "git.confirmSync": false,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.preferences.quoteStyle": "double"
+}

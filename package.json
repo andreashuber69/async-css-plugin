@@ -1,7 +1,7 @@
 {
   "name": "async-css-plugin",
   "author": {
-    "name": "Andreas Huber Dönni"
+    "name": "Andreas Huber"
   },
   "keywords": [
     "async",
@@ -11,7 +11,7 @@
   ],
   "description": "Minimal webpack plugin that transforms all links to css files such that they are loaded asynchronously.",
   "homepage": "https://github.com/andreashuber69/async-css-plugin/blob/master/README.md#--",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -23,16 +23,31 @@
   "main": "dist/plugin.js",
   "types": "dist/plugin.d.ts",
   "scripts": {
-    "build": "webpack --mode production"
+    "prebuild": "npm run lint",
+    "build": "webpack --mode production",
+    "prelint": "cspell '**/*.*' && markdownlint *.md",
+    "lint": "tslint --project tsconfig.json --config tslint.json --format verbose",
+    "ci": "npm run build"
   },
   "devDependencies": {
     "@types/node": "^10.17.14",
     "@types/webpack": "^4.41.3",
+    "cspell": "^4.0.46",
+    "markdownlint-cli": "^0.21.0",
     "ts-loader": "^6.2.1",
     "tslib": "^1.10.0",
+    "tslint": "^6.0.0",
     "typescript": "^3.7.5",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "peerDependencies": {
+    "webpack": ">3.12.0"
+  },
+  "files": [
+    "dist/plugin.js",
+    "dist/plugin.js.map",
+    "dist/plugin.d.ts"
+  ]
 }
