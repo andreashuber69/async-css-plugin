@@ -25,3 +25,4 @@ deploy:
   on:
     branch: master
   tag: alpha
+  skip_cleanup: true
