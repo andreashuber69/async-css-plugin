@@ -1,9 +1,9 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/plugin.ts",
   // cSpell: ignore devtool
   devtool: 'source-map',
+  entry: "./src/plugin.ts",
   module: {
     rules: [
       {
@@ -13,11 +13,14 @@ module.exports = {
       },
     ],
   },
+  output: {
+    filename: "plugin.js",
+    libraryExport: "default",
+    libraryTarget: "commonjs2",
+    path: path.resolve(__dirname, "dist"),
+  },
   resolve: {
     extensions: [".ts"],
   },
-  output: {
-    filename: "plugin.js",
-    path: path.resolve(__dirname, "dist"),
-  },
+  target: "node"
 };
