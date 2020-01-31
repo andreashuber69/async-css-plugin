@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = {
   // cSpell: ignore devtool
   devtool: 'source-map',
-  entry: "./src/plugin.ts",
+  entry: "./src/AsyncCssPlugin.ts",
   module: {
     rules: [
       {
@@ -14,7 +14,7 @@ module.exports = {
     ],
   },
   output: {
-    filename: "plugin.js",
+    filename: "AsyncCssPlugin.js",
     libraryExport: "default",
     libraryTarget: "commonjs2",
     path: path.resolve(__dirname, "dist"),

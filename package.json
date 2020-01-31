@@ -20,8 +20,8 @@
   "bugs": {
     "url": "https://github.com/andreashuber69/async-css-plugin/issues"
   },
-  "main": "dist/plugin.js",
-  "types": "dist/plugin.d.ts",
+  "main": "dist/AsyncCssPlugin.js",
+  "types": "dist/AsyncCssPlugin.d.ts",
   "scripts": {
     "prebuild": "npm run lint",
     "build": "webpack --mode production",
@@ -46,8 +46,8 @@
     "webpack": ">3.12.0"
   },
   "files": [
-    "dist/plugin.js",
-    "dist/plugin.js.map",
-    "dist/plugin.d.ts"
+    "dist/AsyncCssPlugin.js",
+    "dist/AsyncCssPlugin.js.map",
+    "dist/AsyncCssPlugin.d.ts"
   ]
 }
