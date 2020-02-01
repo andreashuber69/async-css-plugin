@@ -9,7 +9,7 @@
     "webpack",
     "plugin"
   ],
-  "description": "Minimal webpack plugin that transforms all links to css files such that they are loaded asynchronously.",
+  "description": "Minimal webpack plugin that transforms links to css files such that they are loaded asynchronously.",
   "homepage": "https://github.com/andreashuber69/async-css-plugin/blob/master/README.md#--",
   "version": "1.0.7",
   "license": "MIT",
@@ -20,8 +20,8 @@
   "bugs": {
     "url": "https://github.com/andreashuber69/async-css-plugin/issues"
   },
-  "main": "dist/plugin.js",
-  "types": "dist/plugin.d.ts",
+  "main": "dist/AsyncCssPlugin.js",
+  "types": "dist/AsyncCssPlugin.d.ts",
   "scripts": {
     "prebuild": "npm run lint",
     "build": "webpack --mode production",
@@ -30,12 +30,11 @@
     "ci": "npm run build"
   },
   "devDependencies": {
-    "@types/node": "^10.17.14",
-    "@types/webpack": "^4.41.3",
+    "@types/html-webpack-plugin": "^3.2.2",
+    "@types/webpack": "^4.4.35",
     "cspell": "^4.0.46",
     "markdownlint-cli": "^0.21.0",
     "ts-loader": "^6.2.1",
-    "tslib": "^1.10.0",
     "tslint": "^6.0.0",
     "typescript": "^3.7.5",
     "webpack": "^4.41.5",
@@ -43,11 +42,12 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "webpack": ">3.12.0"
+    "webpack": ">=4.4.0",
+    "html-webpack-plugin": ">=3.2.0"
   },
   "files": [
-    "dist/plugin.js",
-    "dist/plugin.js.map",
-    "dist/plugin.d.ts"
+    "dist/AsyncCssPlugin.js",
+    "dist/AsyncCssPlugin.js.map",
+    "dist/AsyncCssPlugin.d.ts"
   ]
 }
