@@ -51,7 +51,7 @@ This plugin is designed for applications that are built using **[webpack](https:
 your application must satisfy **one** of the following conditions:
 
 - Your application is built using **webpack** directly or a framework that allows for the existence of
-  *webpack.config.js*.
+  *[webpack.config.js](https://webpack.js.org/configuration/)*.
 - Your application is built using a framework like **[Vue](https://vuejs.org)** that "abstracts away"
   *webpack.config.js* but provides
   [access to the configuration](https://cli.vuejs.org/guide/webpack.html#chaining-advanced).
@@ -71,7 +71,7 @@ more information.
 
 If your project does not yet contain *[webpack.config.js](https://webpack.js.org/configuration/)*, please create one in
 the same folder as *package.json*. Otherwise, please modify accordingly. `AsyncCssPlugin` depends on
-`[HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin/)`, so *webpack.config.js* should minimally look
+[HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin/), so *webpack.config.js* should minimally look
 as follows:
 
 ``` js
@@ -79,10 +79,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const AsyncCssPlugin = require("async-css-plugin");
 
 module.exports = {
-  plugins: [
-    new HtmlWebpackPlugin(),
-    new AsyncCssPlugin()
-  ]
+    plugins: [
+        new HtmlWebpackPlugin(),
+        new AsyncCssPlugin()
+    ]
 };
 ```
 
@@ -101,7 +101,7 @@ module.exports = {
 }
 ```
 
-By default, **Vue** internally already uses `[HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin/)`, so
+By default, **Vue** internally already uses [HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin/), so
 there should be no need to configure that in *vue.config.js*.
 
 ## Usage
