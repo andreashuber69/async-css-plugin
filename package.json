@@ -11,7 +11,7 @@
   ],
   "description": "Minimal webpack plugin that transforms links to css files such that they are loaded asynchronously.",
   "homepage": "https://github.com/andreashuber69/async-css-plugin/blob/master/README.md#--",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "license": "MIT",
   "repository": {
     "type": "git",
