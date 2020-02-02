@@ -8,8 +8,18 @@ interface UntypedHooks {
 type Page = Parameters<Parameters<Hooks["htmlWebpackPluginAlterAssetTags"]["tap"]>[1]>[0];
 type HtmlTagObject = Page["head"][0];
 
+export type LogLevel = "info" | "warning" | "error";
+
+export interface Options {
+    readonly logLevel?: LogLevel;
+}
+
 // tslint:disable-next-line: no-default-export
 export default class AsyncCssPlugin {
+    public constructor(options: Options = {}) {
+        Object.assign(this.options, options);
+    }
+
     public apply(compiler: Compiler): void {
         if (!compiler.hooks) {
             throw new Error("Missing hooks property. The version of your webpack package is probably too old.");
@@ -19,6 +29,8 @@ export default class AsyncCssPlugin {
             AsyncCssPlugin.name,
             (compilation) => this.checkHook(compilation.hooks as unknown as UntypedHooks));
     }
+
+    private readonly options: Required<Options> = { logLevel: "warning" };
 
     private checkHook(hooks: UntypedHooks) {
         if (!hooks.htmlWebpackPluginAlterAssetTags) {
