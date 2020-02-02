@@ -81,7 +81,7 @@ const AsyncCssPlugin = require("async-css-plugin");
 module.exports = {
     plugins: [
         new HtmlWebpackPlugin(),
-        new AsyncCssPlugin()
+        new AsyncCssPlugin({ /* options */ })
     ]
 };
 ```
@@ -96,7 +96,7 @@ const AsyncCssPlugin = require("async-css-plugin");
 
 module.exports = {
     chainWebpack: config => {
-        config.plugin("async-css-plugin").use(AsyncCssPlugin);
+        config.plugin("async-css-plugin").use(AsyncCssPlugin, [{ /* options */ }]);
     }
 }
 ```
@@ -120,6 +120,19 @@ For details on why and how this works, please see
 As mentioned above, async CSS loading only makes sense when the CSS being loaded **does not** affect the currently
 visible page. It is your responsibility to show a different page while this happens, check out
 **[Net Worth](https://andreashuber69.github.io/net-worth)** for an example.
+
+## Options
+
+The `AsyncCssPlugin` constructor accepts an (optional) options object, which looks as follows:
+
+``` ts
+type MessageType = "info" | "warn" | "error";
+
+interface Options {
+    // "info" logs everything, "warn" logs warnings and errors, "error" logs errors only. Default is "warn".
+    readonly logLevel?: MessageType;
+}
+```
 
 ## Credits
 
