@@ -11,10 +11,7 @@ type HtmlTagObject = Page["head"][0];
 export type MessageType = "info" | "warn" | "error";
 
 export interface Options {
-    /**
-     * What to log
-     * @description "info" logs everything, "warn" logs warnings and errors, "error" logs errors only.
-     */
+    /** "info" logs everything, "warn" logs warnings and errors, "error" logs errors only. Default is "warn". */
     readonly logLevel?: MessageType;
 }
 
