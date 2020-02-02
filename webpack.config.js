@@ -1,4 +1,5 @@
 const path = require("path");
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     // cSpell: ignore devtool
@@ -18,6 +19,18 @@ module.exports = {
         libraryExport: "default",
         libraryTarget: "commonjs2",
         path: path.resolve(__dirname, "dist"),
+    },
+    optimization: {
+        minimizer: [
+            new TerserPlugin({
+                cache: true,
+                parallel: true,
+                sourceMap: true,
+                terserOptions: {
+                    keep_classnames: true // We're using the class name in log output
+                }
+            }),
+        ],
     },
     resolve: {
         extensions: [".ts"],
