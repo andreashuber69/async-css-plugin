@@ -1,9 +1,12 @@
 import { Hooks } from "html-webpack-plugin";
 import { Compiler } from "webpack";
 
-interface IUntypedHooks {
+interface UntypedHooks {
     [key: string]: unknown;
 }
+
+type Page = Parameters<Parameters<Hooks["htmlWebpackPluginAlterAssetTags"]["tap"]>[1]>[0];
+type HtmlTagObject = Page["head"][0];
 
 // tslint:disable-next-line: no-default-export
 export default class AsyncCssPlugin {
@@ -14,32 +17,36 @@ export default class AsyncCssPlugin {
 
         compiler.hooks.compilation.tap(
             AsyncCssPlugin.name,
-            (compilation) => this.checkHook(compilation.hooks as unknown as IUntypedHooks));
+            (compilation) => this.checkHook(compilation.hooks as unknown as UntypedHooks));
     }
 
-    private checkHook(hooks: IUntypedHooks) {
+    private checkHook(hooks: UntypedHooks) {
         if (!hooks.htmlWebpackPluginAlterAssetTags) {
             throw new Error("Missing hook. Your webpack configuration is probably missing the HtmlWebpackPlugin.");
         }
 
         (hooks as unknown as Hooks).htmlWebpackPluginAlterAssetTags.tap(
-            AsyncCssPlugin.name, (data) => this.process(data));
+            AsyncCssPlugin.name, (page) => this.processPage(page));
     }
 
-    // tslint:disable-next-line: prefer-function-over-method
-    private process(data: Parameters<Parameters<Hooks["htmlWebpackPluginAlterAssetTags"]["tap"]>[1]>[0]) {
-        for (const { tagName, attributes } of data.head) {
-            if ((tagName === "link") && (attributes.rel === "stylesheet")) {
-                if (attributes.media) {
-                    console.warn(`The link for ${attributes.href} already has a media attribute, will not modify.`);
-                } else {
-                    attributes.media = "print";
-                    attributes.onload = attributes.onload ? `${attributes.onload};` : "";
-                    attributes.onload += "this.media='all'";
-                }
+    private processPage(page: Page) {
+        for (const tag of page.head) {
+            if ((tag.tagName === "link") && (tag.attributes.rel === "stylesheet")) {
+                this.processTag(tag);
             }
         }
 
-        return data;
+        return page;
+    }
+
+    // tslint:disable-next-line: prefer-function-over-method
+    private processTag({ attributes }: HtmlTagObject) {
+        if (attributes.media) {
+            console.warn(`The link for ${attributes.href} already has a media attribute, will not modify.`);
+        } else {
+            attributes.media = "print";
+            attributes.onload = attributes.onload ? `${attributes.onload};` : "";
+            attributes.onload += "this.media='all'";
+        }
     }
 }

@@ -13,6 +13,7 @@
     "completed-docs": false,
     "file-name-casing": [true, "pascal-case"],
     "increment-decrement": false,
+    "interface-name": false,
     "jsdoc-format": true,
     "max-line-length": { "options": [120] },
     "member-ordering": [
