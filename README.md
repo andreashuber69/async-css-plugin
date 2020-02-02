@@ -2,8 +2,8 @@
   <img width="128" src="https://raw.githubusercontent.com/andreashuber69/async-css-plugin/master/doc/icon.svg?sanitize=true">
 </h1>
 <p align="center">
-  <a href="https://github.com/andreashuber69/async-css-plugin/releases/latest">
-    <img src="https://img.shields.io/github/release/andreashuber69/async-css-plugin.svg" alt="Version">
+  <a href="https://www.npmjs.com/package/async-css-plugin">
+    <img src="https://img.shields.io/npm/v/async-css-plugin" alt="NPM Version">
   </a>
   <a href="https://github.com/andreashuber69/async-css-plugin/releases/latest">
     <img src="https://img.shields.io/github/release-date/andreashuber69/async-css-plugin.svg" alt="Release Date">
@@ -15,13 +15,13 @@
     <img src="https://img.shields.io/github/issues-raw/andreashuber69/async-css-plugin.svg" alt="Issues">
   </a>
   <a href="https://codebeat.co/projects/github-com-andreashuber69-async-css-plugin-develop">
-    <img src="https://codebeat.co/badges/8c3c1b09-c029-483a-a812-72e3d9583306" alt="Codebeat">
+    <img src="https://codebeat.co/badges/8c3c1b09-c029-483a-a812-72e3d9583306" alt="Codebeat Score">
   </a>
   <a href="https://codeclimate.com/github/andreashuber69/async-css-plugin/maintainability">
-    <img src="https://api.codeclimate.com/v1/badges/b071b5fbd1aaf7aafbd6/maintainability" alt="CC Maintainability">
+    <img src="https://api.codeclimate.com/v1/badges/b071b5fbd1aaf7aafbd6/maintainability" alt="Code Climate Maintainability">
   </a>
   <a href="https://codeclimate.com/github/andreashuber69/async-css-plugin/test_coverage">
-    <img src="https://api.codeclimate.com/v1/badges/b071b5fbd1aaf7aafbd6/test_coverage" alt="CC Test Coverage">
+    <img src="https://api.codeclimate.com/v1/badges/b071b5fbd1aaf7aafbd6/test_coverage" alt="Code Climate Test Coverage">
   </a>
   <a href="https://github.com/andreashuber69/async-css-plugin/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/andreashuber69/async-css-plugin.svg" alt="License">
@@ -43,7 +43,7 @@ mobile user is shown a white screen for many seconds before the indicator finall
 
 This is where asynchronous CSS loading can lead to a manifold decrease of the time to
 [First Paint](https://stackoverflow.com/questions/42209419/time-to-first-paint-vs-first-meaningful-paint) and thus to a
-much better perceived responsiveness of your page.
+much better perceived responsiveness of your site.
 
 ## Prerequisites
 
@@ -81,7 +81,7 @@ const AsyncCssPlugin = require("async-css-plugin");
 module.exports = {
     plugins: [
         new HtmlWebpackPlugin(),
-        new AsyncCssPlugin()
+        new AsyncCssPlugin({ /* options */ })
     ]
 };
 ```
@@ -96,7 +96,7 @@ const AsyncCssPlugin = require("async-css-plugin");
 
 module.exports = {
     chainWebpack: config => {
-        config.plugin("async-css-plugin").use(AsyncCssPlugin);
+        config.plugin("async-css-plugin").use(AsyncCssPlugin, [{ /* options */ }]);
     }
 }
 ```
@@ -120,6 +120,19 @@ For details on why and how this works, please see
 As mentioned above, async CSS loading only makes sense when the CSS being loaded **does not** affect the currently
 visible page. It is your responsibility to show a different page while this happens, check out
 **[Net Worth](https://andreashuber69.github.io/net-worth)** for an example.
+
+## Options
+
+The `AsyncCssPlugin` constructor accepts an (optional) options object, which looks as follows:
+
+``` ts
+type MessageType = "info" | "warn" | "error";
+
+interface Options {
+    // "info" logs everything, "warn" logs warnings and errors, "error" logs errors only. Default is "warn".
+    readonly logLevel?: MessageType;
+}
+```
 
 ## Credits
 
