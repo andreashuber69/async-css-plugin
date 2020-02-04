@@ -123,16 +123,8 @@ out **[Net Worth](https://andreashuber69.github.io/net-worth)** for an example.
 
 ## Options
 
-The `AsyncCssPlugin` constructor accepts an (optional) options object, which looks as follows:
-
-``` ts
-type MessageType = "info" | "warn" | "error";
-
-interface Options {
-    // "info" logs everything, "warn" logs warnings and errors, "error" logs errors only. Default is "warn".
-    readonly logLevel?: MessageType;
-}
-```
+The `AsyncCssPlugin` constructor accepts an (optional)
+[Options](https://github.com/andreashuber69/async-css-plugin/blob/develop/src/Options.ts) object.
 
 ## Credits
 
