@@ -1,19 +1,14 @@
 import { Hooks } from "html-webpack-plugin";
 import { Compiler } from "webpack";
 
+import { MessageType, Options } from "./Options";
+
 interface UntypedHooks {
     [key: string]: unknown;
 }
 
 type Page = Parameters<Parameters<Hooks["htmlWebpackPluginAlterAssetTags"]["tap"]>[1]>[0];
 type HtmlTagObject = Page["head"][0];
-
-export type MessageType = "info" | "warn" | "error";
-
-export interface Options {
-    /** "info" logs everything, "warn" logs warnings and errors, "error" logs errors only. Default is "warn". */
-    readonly logLevel?: MessageType;
-}
 
 // tslint:disable-next-line: no-default-export
 export default class AsyncCssPlugin {
