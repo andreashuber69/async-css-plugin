@@ -50,11 +50,11 @@ much better perceived responsiveness of your site.
 This plugin is designed for applications that are built using **[webpack](https://webpack.js.org/)**. More specifically,
 your application must satisfy **one** of the following conditions:
 
-- Your application is built using **webpack** directly or a framework that allows for the existence of
-  *[webpack.config.js](https://webpack.js.org/configuration/)*.
+- Your application is built using **webpack** directly or a framework that allows for the configuration of **webpack**
+  with *[webpack.config.js](https://webpack.js.org/configuration/)*.
 - Your application is built using a framework like **[Vue](https://vuejs.org)** that "abstracts away"
-  *webpack.config.js* but provides
-  [access to the configuration](https://cli.vuejs.org/guide/webpack.html#chaining-advanced).
+  *webpack.config.js* but provides a [different way](https://cli.vuejs.org/guide/webpack.html#chaining-advanced) to
+  modify the **webpack** configuration.
 
 ## Getting Started
 
@@ -67,7 +67,7 @@ your application must satisfy **one** of the following conditions:
 `AsyncCssPlugin` configuration depends on how your project is set up, please see [Prerequisites](#Prerequisites) for
 more information.
 
-#### `webpack.config.js`
+#### webpack.config.js
 
 If your project does not yet contain *[webpack.config.js](https://webpack.js.org/configuration/)*, please create one in
 the same folder as *package.json*. Otherwise, please modify accordingly. `AsyncCssPlugin` depends on
@@ -86,7 +86,7 @@ module.exports = {
 };
 ```
 
-#### `vue.config.js`
+#### vue.config.js
 
 If your Vue project does not yet contain *[vue.config.js](https://cli.vuejs.org/config/)*, please create one in the same
 folder as *package.json*. Otherwise, please adapt accordingly:
@@ -118,8 +118,8 @@ For details on why and how this works, please see
 **filament group**.
 
 As mentioned above, async CSS loading only makes sense when the CSS being loaded **does not** affect the currently
-visible page. It is your responsibility to show a different page while this happens, check out
-**[Net Worth](https://andreashuber69.github.io/net-worth)** for an example.
+visible page. It is your responsibility to show a different page (e.g. a loading indicator) while this happens, check
+out **[Net Worth](https://andreashuber69.github.io/net-worth)** for an example.
 
 ## Options
 
