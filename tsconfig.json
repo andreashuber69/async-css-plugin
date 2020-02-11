@@ -3,7 +3,6 @@
     // Compilation options
     "forceConsistentCasingInFileNames": true,
     "lib": ["es2017"],
-    "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "strict": true,
