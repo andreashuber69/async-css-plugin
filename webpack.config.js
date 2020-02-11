@@ -1,9 +1,9 @@
 const path = require("path");
-const TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
     // cSpell: ignore devtool
-    devtool: 'source-map',
+    devtool: "source-map",
     entry: "./src/AsyncCssPlugin.ts",
     module: {
         rules: [
