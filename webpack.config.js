@@ -8,9 +8,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.ts$/,
                 use: "ts-loader",
-                exclude: /node_modules/,
             },
         ],
     },
@@ -23,17 +21,11 @@ module.exports = {
     optimization: {
         minimizer: [
             new TerserPlugin({
-                cache: true,
-                parallel: true,
-                sourceMap: true,
                 terserOptions: {
                     keep_classnames: true // We're using the class name in log output
                 }
             }),
         ],
-    },
-    resolve: {
-        extensions: [".ts"],
     },
     target: "node"
 };
