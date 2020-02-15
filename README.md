@@ -88,7 +88,7 @@ module.exports = {
 
 #### vue.config.js
 
-If your Vue project does not yet contain *[vue.config.js](https://cli.vuejs.org/config/)*, please create one in the same
+If your **Vue** project does not yet contain *[vue.config.js](https://cli.vuejs.org/config/)*, please create one in the same
 folder as *package.json*. Otherwise, please adapt accordingly:
 
 ``` js

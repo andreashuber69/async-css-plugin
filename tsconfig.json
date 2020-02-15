@@ -1,15 +1,13 @@
 {
   "compilerOptions": {
-    // Compilation options
+    "declaration": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
+    "lib": [],
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
-    "strict": true,
-    // Generation options
-    "declaration": true,
     "outDir": "./dist/",
     "sourceMap": true,
-    "target": "es2015"
+    "strict": true,
+    "target": "es2017"
   }
 }
