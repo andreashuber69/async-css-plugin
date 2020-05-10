@@ -1,14 +1,6 @@
-import { Hooks } from "html-webpack-plugin";
 import { Compiler } from "webpack";
 
 import { MessageType, Options } from "./Options";
-
-interface UntypedHooks {
-    [key: string]: unknown;
-}
-
-type Page = Parameters<Parameters<Hooks["htmlWebpackPluginAlterAssetTags"]["tap"]>[1]>[0];
-type HtmlTagObject = Page["head"][0];
 
 // tslint:disable-next-line: no-default-export
 export default class AsyncCssPlugin {
@@ -21,9 +13,7 @@ export default class AsyncCssPlugin {
             this.log("error", "hooks is undefined. Is the version of your webpack package too old?");
         }
 
-        compiler.hooks.compilation.tap(
-            AsyncCssPlugin.name,
-            (compilation) => this.checkHook(compilation.hooks as unknown as UntypedHooks));
+        compiler.hooks.compilation.tap(AsyncCssPlugin.name, (compilation) => this.checkHook(compilation.hooks));
     }
 
     private static assertUnreachable(value: never): never {
@@ -44,15 +34,16 @@ export default class AsyncCssPlugin {
         }
     }
 
-    private checkHook(hooks: UntypedHooks) {
+    private checkHook(hooks: any) {
+        // tslint:disable-next-line: no-unsafe-any
         if (!hooks.htmlWebpackPluginAlterAssetTags) {
             this.log(
                 "error",
                 "htmlWebpackPluginAlterAssetTags is undefined. Is your configuration missing the HtmlWebpackPlugin?");
         }
 
-        (hooks as unknown as Hooks).htmlWebpackPluginAlterAssetTags.tap(
-            AsyncCssPlugin.name, (page) => this.processPage(page));
+        // tslint:disable-next-line: no-unsafe-any
+        hooks.htmlWebpackPluginAlterAssetTags.tap(AsyncCssPlugin.name, (page: any) => this.processPage(page));
     }
 
     private doLog(messageType: MessageType) {
@@ -68,18 +59,21 @@ export default class AsyncCssPlugin {
         }
     }
 
-    private processPage(page: Page) {
+    // tslint:disable: no-unsafe-any
+    private processPage(page: any) {
         for (const tag of page.head) {
             if ((tag.tagName === "link") && (tag.attributes.rel === "stylesheet")) {
                 this.processTag(page.outputName, tag);
+                // tslint:enable: no-unsafe-any
             }
         }
 
         return page;
     }
 
+    // tslint:disable: no-unsafe-any
     // tslint:disable-next-line: prefer-function-over-method
-    private processTag(outputName: string, { attributes }: HtmlTagObject) {
+    private processTag(outputName: string, { attributes }: any) {
         if (attributes.media) {
             this.log("warn", `The link for ${attributes.href} already has a media attribute, will not modify.`);
         } else {
@@ -89,4 +83,5 @@ export default class AsyncCssPlugin {
             this.log("info", `${outputName}: Modified link to ${attributes.href}.`);
         }
     }
+    // tslint:enable: no-unsafe-any
 }
