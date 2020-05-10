@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": [],
+    "lib": ["es2017", "dom"],
+    "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "outDir": "./dist/",
