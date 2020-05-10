@@ -2,8 +2,6 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 
 import { MessageType, Options } from "./Options";
 
-type AlterAssetTagsData = Parameters<Parameters<HtmlWebpackPlugin.Hooks["alterAssetTags"]["tap"]>[1]>[0];
-
 // tslint:disable-next-line: no-default-export
 export default class AsyncCssPlugin {
     public constructor(options: Options = {}) {
@@ -44,13 +42,13 @@ export default class AsyncCssPlugin {
 
         if (htmlWebpackPluginAlterAssetTags) {
             // html-webpack-plugin v3
-            htmlWebpackPluginAlterAssetTags.tap(AsyncCssPlugin.name, (page: any) => this.processPage(page));
+            htmlWebpackPluginAlterAssetTags.tap(AsyncCssPlugin.name, (page: any) => this.checkTags(page, page.head));
             // tslint:enable: no-unsafe-any
         } else if (HtmlWebpackPlugin && HtmlWebpackPlugin.getHooks) {
             // html-webpack-plugin v4
             // tslint:disable-next-line: no-unsafe-any
             const hooks = HtmlWebpackPlugin.getHooks(compilation);
-            hooks.alterAssetTags.tap(AsyncCssPlugin.name, (data) => this.processData(data));
+            hooks.alterAssetTags.tap(AsyncCssPlugin.name, (data) => this.checkTags(data, data.assetTags.styles));
         } else {
             this.log("error", "Cannot find hook. Is your configuration missing the HtmlWebpackPlugin?");
         }
@@ -69,27 +67,16 @@ export default class AsyncCssPlugin {
         }
     }
 
-    // tslint:disable: no-unsafe-any
-    private processPage(page: any) {
-        for (const tag of page.head) {
-            this.checkTag(page.outputName, tag);
+    private checkTags<TOutput extends { readonly outputName: string }>(output: TOutput, tags: any[]) {
+        // tslint:disable-next-line: no-unsafe-any
+        for (const { tagName, attributes } of tags) {
+            // tslint:disable-next-line: no-unsafe-any
+            if ((tagName === "link") && (attributes.rel === "stylesheet")) {
+                this.processTag(output.outputName, attributes);
+            }
         }
 
-        return page;
-    }
-
-    private processData(data: AlterAssetTagsData) {
-        for (const tag of data.assetTags.styles) {
-            this.checkTag(data.outputName, tag);
-        }
-
-        return data;
-    }
-
-    private checkTag(outputName: string, { tagName, attributes }: any) {
-        if ((tagName === "link") && (attributes.rel === "stylesheet")) {
-            this.processTag(outputName, attributes);
-        }
+        return output;
     }
 
     // tslint:disable: no-unsafe-any
