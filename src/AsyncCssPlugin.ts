@@ -36,10 +36,10 @@ export default class AsyncCssPlugin {
 
     private checkHook(compilation: any) {
         // tslint:disable: no-unsafe-any
-        const hooks = compilation.hooks;
+        const { hooks: { htmlWebpackPluginAlterAssetTags } } = compilation;
 
-        if (hooks.htmlWebpackPluginAlterAssetTags) {
-            hooks.htmlWebpackPluginAlterAssetTags.tap(AsyncCssPlugin.name, (page: any) => this.processPage(page));
+        if (htmlWebpackPluginAlterAssetTags) {
+            htmlWebpackPluginAlterAssetTags.tap(AsyncCssPlugin.name, (page: any) => this.processPage(page));
             // tslint:enable: no-unsafe-any
         } else {
             this.log(
