@@ -1,4 +1,8 @@
+import HtmlWebpackPlugin from "html-webpack-plugin";
+
 import { MessageType, Options } from "./Options";
+
+type AlterAssetTagsData = Parameters<Parameters<HtmlWebpackPlugin.Hooks["alterAssetTags"]["tap"]>[1]>[0];
 
 // tslint:disable-next-line: no-default-export
 export default class AsyncCssPlugin {
@@ -39,12 +43,16 @@ export default class AsyncCssPlugin {
         const { hooks: { htmlWebpackPluginAlterAssetTags } } = compilation;
 
         if (htmlWebpackPluginAlterAssetTags) {
+            // html-webpack-plugin v3
             htmlWebpackPluginAlterAssetTags.tap(AsyncCssPlugin.name, (page: any) => this.processPage(page));
             // tslint:enable: no-unsafe-any
+        } else if (HtmlWebpackPlugin && HtmlWebpackPlugin.getHooks) {
+            // html-webpack-plugin v4
+            // tslint:disable-next-line: no-unsafe-any
+            const hooks = HtmlWebpackPlugin.getHooks(compilation);
+            hooks.alterAssetTags.tap(AsyncCssPlugin.name, (data) => this.processData(data));
         } else {
-            this.log(
-                "error",
-                "htmlWebpackPluginAlterAssetTags is undefined. Is your configuration missing the HtmlWebpackPlugin?");
+            this.log("error", "Cannot find hook. Is your configuration missing the HtmlWebpackPlugin?");
         }
     }
 
@@ -71,6 +79,16 @@ export default class AsyncCssPlugin {
         }
 
         return page;
+    }
+
+    private processData(data: AlterAssetTagsData) {
+        for (const tag of data.assetTags.styles) {
+            if ((tag.tagName === "link") && (tag.attributes.rel === "stylesheet")) {
+                this.processTag(data.outputName, tag);
+            }
+        }
+
+        return data;
     }
 
     // tslint:disable: no-unsafe-any
