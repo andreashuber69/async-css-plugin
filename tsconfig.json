@@ -3,6 +3,7 @@
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "lib": [],
+    "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "outDir": "./dist/",
