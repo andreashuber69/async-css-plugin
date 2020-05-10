@@ -10,14 +10,14 @@ export default class AsyncCssPlugin {
         Object.assign(this.options, options);
     }
 
-    public apply(compiler: any): void {
-        // tslint:disable-next-line: no-unsafe-any
-        if (!compiler.hooks) {
+    // tslint:disable-next-line: no-unsafe-any
+    public apply({ hooks }: any): void {
+        if (!hooks) {
             this.log("error", "hooks is undefined. Is the version of your webpack package too old?");
         }
 
         // tslint:disable-next-line: no-unsafe-any
-        compiler.hooks.compilation.tap(AsyncCssPlugin.name, (compilation: any) => this.checkHook(compilation));
+        hooks.compilation.tap(AsyncCssPlugin.name, (compilation: any) => this.checkHook(compilation));
     }
 
     private static assertUnreachable(value: never): never {
