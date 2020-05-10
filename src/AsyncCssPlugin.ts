@@ -36,14 +36,14 @@ export default class AsyncCssPlugin {
 
     private checkHook(hooks: any) {
         // tslint:disable-next-line: no-unsafe-any
-        if (!hooks.htmlWebpackPluginAlterAssetTags) {
+        if (hooks.htmlWebpackPluginAlterAssetTags) {
+            // tslint:disable-next-line: no-unsafe-any
+            hooks.htmlWebpackPluginAlterAssetTags.tap(AsyncCssPlugin.name, (page: any) => this.processPage(page));
+        } else {
             this.log(
                 "error",
                 "htmlWebpackPluginAlterAssetTags is undefined. Is your configuration missing the HtmlWebpackPlugin?");
         }
-
-        // tslint:disable-next-line: no-unsafe-any
-        hooks.htmlWebpackPluginAlterAssetTags.tap(AsyncCssPlugin.name, (page: any) => this.processPage(page));
     }
 
     private doLog(messageType: MessageType) {
