@@ -30,7 +30,6 @@
     "ci": "npm run build"
   },
   "devDependencies": {
-    "@types/webpack": "^4.4.35",
     "cspell": "^4.0.46",
     "markdownlint-cli": "^0.22.0",
     "terser-webpack-plugin": "^2.3.5",

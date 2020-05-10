@@ -1,5 +1,3 @@
-import { Compiler } from "webpack";
-
 import { MessageType, Options } from "./Options";
 
 // tslint:disable-next-line: no-default-export
@@ -8,12 +6,14 @@ export default class AsyncCssPlugin {
         Object.assign(this.options, options);
     }
 
-    public apply(compiler: Compiler): void {
+    public apply(compiler: any): void {
+        // tslint:disable-next-line: no-unsafe-any
         if (!compiler.hooks) {
             this.log("error", "hooks is undefined. Is the version of your webpack package too old?");
         }
 
-        compiler.hooks.compilation.tap(AsyncCssPlugin.name, (compilation) => this.checkHook(compilation.hooks));
+        // tslint:disable-next-line: no-unsafe-any
+        compiler.hooks.compilation.tap(AsyncCssPlugin.name, (compilation: any) => this.checkHook(compilation));
     }
 
     private static assertUnreachable(value: never): never {
@@ -34,11 +34,13 @@ export default class AsyncCssPlugin {
         }
     }
 
-    private checkHook(hooks: any) {
-        // tslint:disable-next-line: no-unsafe-any
+    private checkHook(compilation: any) {
+        // tslint:disable: no-unsafe-any
+        const hooks = compilation.hooks;
+
         if (hooks.htmlWebpackPluginAlterAssetTags) {
-            // tslint:disable-next-line: no-unsafe-any
             hooks.htmlWebpackPluginAlterAssetTags.tap(AsyncCssPlugin.name, (page: any) => this.processPage(page));
+            // tslint:enable: no-unsafe-any
         } else {
             this.log(
                 "error",
