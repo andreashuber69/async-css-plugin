@@ -72,10 +72,7 @@ export default class AsyncCssPlugin {
     // tslint:disable: no-unsafe-any
     private processPage(page: any) {
         for (const tag of page.head) {
-            if ((tag.tagName === "link") && (tag.attributes.rel === "stylesheet")) {
-                this.processTag(page.outputName, tag);
-                // tslint:enable: no-unsafe-any
-            }
+            this.checkTag(page.outputName, tag);
         }
 
         return page;
@@ -83,17 +80,21 @@ export default class AsyncCssPlugin {
 
     private processData(data: AlterAssetTagsData) {
         for (const tag of data.assetTags.styles) {
-            if ((tag.tagName === "link") && (tag.attributes.rel === "stylesheet")) {
-                this.processTag(data.outputName, tag);
-            }
+            this.checkTag(data.outputName, tag);
         }
 
         return data;
     }
 
+    private checkTag(outputName: string, { tagName, attributes }: any) {
+        if ((tagName === "link") && (attributes.rel === "stylesheet")) {
+            this.processTag(outputName, attributes);
+        }
+    }
+
     // tslint:disable: no-unsafe-any
     // tslint:disable-next-line: prefer-function-over-method
-    private processTag(outputName: string, { attributes }: any) {
+    private processTag(outputName: string, attributes: any) {
         if (attributes.media) {
             this.log("warn", `The link for ${attributes.href} already has a media attribute, will not modify.`);
         } else {
