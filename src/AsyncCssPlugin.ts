@@ -1,9 +1,9 @@
-import HtmlWebpackPlugin from "html-webpack-plugin";
+import * as HtmlWebpackPlugin from "html-webpack-plugin";
 
 import { MessageType, Options } from "./Options";
 
 // tslint:disable-next-line: no-default-export
-export default class AsyncCssPlugin {
+class AsyncCssPlugin {
     public constructor(options: Options = {}) {
         Object.assign(this.options, options);
     }
@@ -93,3 +93,5 @@ export default class AsyncCssPlugin {
     }
     // tslint:enable: no-unsafe-any
 }
+
+export = AsyncCssPlugin;
