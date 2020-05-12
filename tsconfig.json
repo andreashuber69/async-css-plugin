@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["es2017", "dom"],
+    "module": "commonjs",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "outDir": "./dist/",
+    "removeComments": true,
     "sourceMap": true,
     "strict": true,
     "target": "es2017"
