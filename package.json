@@ -32,8 +32,10 @@
   },
   "devDependencies": {
     "cspell": "^6.14.2",
+    "css-loader": "^5.2.7",
     "html-webpack-plugin": "^4.3.0",
     "markdownlint-cli": "^0.32.2",
+    "mini-css-extract-plugin": "^1.6.2",
     "tslint": "^6.1.3",
     "typescript": "^4.8.4",
     "webpack": "^4.43.0",
