@@ -1,7 +1,7 @@
-const AsyncCssPlugin = require('./dist/AsyncCssPlugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const AsyncCssPlugin = require("./dist/AsyncCssPlugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require('path');
+const path = require("path");
 
 module.exports = {
     entry: "./src/test/index.js",
@@ -18,4 +18,5 @@ module.exports = {
         ],
     },
     plugins: [new HtmlWebpackPlugin(), new AsyncCssPlugin(), new MiniCssExtractPlugin()],
+    mode: "development",
 };
