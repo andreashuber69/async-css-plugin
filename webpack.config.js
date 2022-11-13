@@ -17,6 +17,6 @@ module.exports = {
             },
         ],
     },
-    plugins: [new HtmlWebpackPlugin(), new AsyncCssPlugin(), new MiniCssExtractPlugin()],
+    plugins: [new HtmlWebpackPlugin(), new AsyncCssPlugin({ logLevel: "info" }), new MiniCssExtractPlugin()],
     mode: "development",
 };
