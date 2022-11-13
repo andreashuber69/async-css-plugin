@@ -64,7 +64,7 @@ your application must satisfy **one** of the following conditions:
 
 ### Configuration
 
-`AsyncCssPlugin` configuration depends on how your project is set up, please see [Prerequisites](#Prerequisites) for
+`AsyncCssPlugin` configuration depends on how your project is set up, please see [Prerequisites](#prerequisites) for
 more information.
 
 #### webpack.config.js
