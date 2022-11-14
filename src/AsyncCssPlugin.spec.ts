@@ -1,11 +1,33 @@
 import { expect } from "chai";
 import { readFileSync } from "fs";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 import { JSDOM } from "jsdom";
-import { join } from "path";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import { join, resolve } from "path";
 import webpack from "webpack";
 
 // tslint:disable-next-line: no-default-import
-import options from "../webpack.config.js";
+import AsyncCssPlugin from "./AsyncCssPlugin";
+
+const options: webpack.Configuration = {
+    entry: "./src/test/index.js",
+    output: {
+        path: resolve(__dirname, "./../test"),
+        filename: "index_bundle.js",
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                // tslint:disable-next-line: no-unsafe-any
+                use: [MiniCssExtractPlugin.loader, "css-loader"],
+            },
+        ],
+    },
+    // tslint:disable-next-line: no-unsafe-any
+    plugins: [new HtmlWebpackPlugin(), new AsyncCssPlugin({ logLevel: "info" }), new MiniCssExtractPlugin()],
+    mode: "development",
+};
 
 const findLinkElement = <T>(collection: HTMLCollection, ctor: new () => T) => {
     for (const item of collection) {
@@ -17,7 +39,7 @@ const findLinkElement = <T>(collection: HTMLCollection, ctor: new () => T) => {
     throw new Error(`${ctor.name} element not found.`);
 };
 
-describe("AsyncCssPlugin", () => {
+describe(AsyncCssPlugin.name, () => {
     it("should modify index.html", (done) => {
         // tslint:disable-next-line: no-unsafe-any
         webpack(options, (err, stats) => {
