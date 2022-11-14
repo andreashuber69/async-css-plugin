@@ -43,6 +43,7 @@
     "no-bitwise": false,
     "no-conditional-assignment": false,
     "no-console": false,
+    "no-implicit-dependencies": [true, "dev"],
     "no-magic-numbers": false,
     "no-null-undefined-union": false,
     "no-parameter-properties": false,
@@ -54,6 +55,7 @@
     "promise-function-async": false,
     "strict-boolean-expressions": false,
     "strict-comparisons": false,
+    "strict-string-expressions": false,
     "typedef": false,
     "unnecessary-else": false
   },
