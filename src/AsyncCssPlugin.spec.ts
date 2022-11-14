@@ -10,7 +10,7 @@ import webpack from "webpack";
 import AsyncCssPlugin from "./AsyncCssPlugin";
 
 const options: webpack.Configuration = {
-    entry: "./src/test/index.js",
+    entry: resolve(__dirname, "./test/index.js"),
     output: {
         path: resolve(__dirname, "./../test"),
         filename: "index_bundle.js",
