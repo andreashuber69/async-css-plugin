@@ -28,7 +28,7 @@
     "prebuild": "npm run lint",
     "build": "tsc",
     "pretest": "npm run build",
-    "test": "export NODE_OPTIONS=--openssl-legacy-provider && ts-mocha --loader=ts-node/esm src/*.spec.ts",
+    "test": "export NODE_OPTIONS=--openssl-legacy-provider && ts-mocha src/test/*.spec.ts",
     "ci": "npm test"
   },
   "devDependencies": {

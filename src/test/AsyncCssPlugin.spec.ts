@@ -7,12 +7,12 @@ import { join, resolve } from "path";
 import webpack from "webpack";
 
 // tslint:disable-next-line: no-default-import
-import AsyncCssPlugin from "./AsyncCssPlugin";
+import AsyncCssPlugin from "../AsyncCssPlugin";
 
 const options: webpack.Configuration = {
-    entry: resolve(__dirname, "./test/index.js"),
+    entry: resolve(__dirname, "./index.js"),
     output: {
-        path: resolve(__dirname, "./../test"),
+        path: resolve(__dirname, "./../../test"),
         filename: "index_bundle.js",
     },
     module: {
