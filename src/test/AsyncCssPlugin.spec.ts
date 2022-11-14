@@ -4,12 +4,14 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import { JSDOM } from "jsdom";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { join, resolve } from "path";
+import type { Configuration } from "webpack";
+// tslint:disable-next-line: no-duplicate-imports match-default-export-name
 import webpack from "webpack";
 
 // tslint:disable-next-line: no-default-import
 import AsyncCssPlugin from "../AsyncCssPlugin";
 
-const createConfig = (plugins: webpack.Plugin[]): webpack.Configuration => ({
+const createConfig = (plugins: Configuration["plugins"]): Configuration => ({
     entry: resolve(__dirname, "./index.js"),
     output: {
         path: resolve(__dirname, "./output"),
@@ -19,7 +21,6 @@ const createConfig = (plugins: webpack.Plugin[]): webpack.Configuration => ({
         rules: [
             {
                 test: /\.css$/i,
-                // tslint:disable-next-line: no-unsafe-any
                 use: [MiniCssExtractPlugin.loader, "css-loader"],
             },
         ],
@@ -28,7 +29,6 @@ const createConfig = (plugins: webpack.Plugin[]): webpack.Configuration => ({
     mode: "development",
 });
 
-// tslint:disable-next-line: no-unsafe-any
 const standardPlugins = [new HtmlWebpackPlugin(), new MiniCssExtractPlugin()];
 const standardOptions = createConfig(standardPlugins);
 const asyncOptions = createConfig([...standardPlugins, new AsyncCssPlugin({ logLevel: "info" })]);
@@ -43,13 +43,13 @@ const findLinkElement = <T>(collection: HTMLCollection, ctor: new () => T) => {
     throw new Error(`${ctor.name} element not found.`);
 };
 
-const createMochaFunc = (options: webpack.Configuration, expectedMedia: string): Mocha.Func =>
+const createMochaFunc = (options: Configuration, expectedMedia: string): Mocha.Func =>
     (done) => webpack(options, (err, stats) => {
         // tslint:disable-next-line: no-unused-expression
         expect(err).to.be.null;
         // tslint:disable-next-line: no-unused-expression
-        expect(stats.hasErrors()).to.be.false;
-        const outputPath = stats.toJson().outputPath;
+        expect(stats?.hasErrors()).to.be.false;
+        const outputPath = stats?.toJson().outputPath;
         // tslint:disable-next-line: no-unused-expression
         expect(!outputPath).to.be.false;
         const { window } = new JSDOM(readFileSync(join(outputPath || "", "index.html")));
