@@ -9,7 +9,7 @@ import webpack from "webpack";
 // tslint:disable-next-line: no-default-import
 import AsyncCssPlugin from "../AsyncCssPlugin";
 
-const options: webpack.Configuration = {
+const createConfig = (plugins: webpack.Plugin[]): webpack.Configuration => ({
     entry: resolve(__dirname, "./index.js"),
     output: {
         path: resolve(__dirname, "./../../test"),
@@ -24,10 +24,14 @@ const options: webpack.Configuration = {
             },
         ],
     },
-    // tslint:disable-next-line: no-unsafe-any
-    plugins: [new HtmlWebpackPlugin(), new AsyncCssPlugin({ logLevel: "info" }), new MiniCssExtractPlugin()],
+    plugins,
     mode: "development",
-};
+});
+
+// tslint:disable-next-line: no-unsafe-any
+const standardPlugins = [new HtmlWebpackPlugin(), new MiniCssExtractPlugin()];
+const standardOptions = createConfig(standardPlugins);
+const asyncOptions = createConfig([...standardPlugins, new AsyncCssPlugin({ logLevel: "info" })]);
 
 const findLinkElement = <T>(collection: HTMLCollection, ctor: new () => T) => {
     for (const item of collection) {
@@ -41,8 +45,7 @@ const findLinkElement = <T>(collection: HTMLCollection, ctor: new () => T) => {
 
 describe(AsyncCssPlugin.name, () => {
     it("should modify index.html", (done) => {
-        // tslint:disable-next-line: no-unsafe-any
-        webpack(options, (err, stats) => {
+        webpack(asyncOptions, (err, stats) => {
             // tslint:disable-next-line: no-unused-expression
             expect(err).to.be.null;
             // tslint:disable-next-line: no-unused-expression
