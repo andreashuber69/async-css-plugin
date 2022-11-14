@@ -21,7 +21,7 @@
     "name": "Andreas Huber"
   },
   "engines": {
-    "node": ">=14.18.0"
+    "node": ">=12.22.0"
   },
   "main": "dist/AsyncCssPlugin.js",
   "types": "dist/AsyncCssPlugin.d.ts",
