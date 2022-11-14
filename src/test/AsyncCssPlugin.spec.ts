@@ -12,7 +12,7 @@ import AsyncCssPlugin from "../AsyncCssPlugin";
 const createConfig = (plugins: webpack.Plugin[]): webpack.Configuration => ({
     entry: resolve(__dirname, "./index.js"),
     output: {
-        path: resolve(__dirname, "./../../test"),
+        path: resolve(__dirname, "./output"),
         filename: "index_bundle.js",
     },
     module: {
@@ -61,5 +61,6 @@ const createMochaFunc = (options: webpack.Configuration, expectedMedia: string):
     });
 
 describe(AsyncCssPlugin.name, () => {
+    it("should not modify index.html", createMochaFunc(standardOptions, ""));
     it("should modify index.html", createMochaFunc(asyncOptions, "print"));
 });
