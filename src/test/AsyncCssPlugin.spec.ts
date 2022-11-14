@@ -43,22 +43,23 @@ const findLinkElement = <T>(collection: HTMLCollection, ctor: new () => T) => {
     throw new Error(`${ctor.name} element not found.`);
 };
 
-describe(AsyncCssPlugin.name, () => {
-    it("should modify index.html", (done) => {
-        webpack(asyncOptions, (err, stats) => {
-            // tslint:disable-next-line: no-unused-expression
-            expect(err).to.be.null;
-            // tslint:disable-next-line: no-unused-expression
-            expect(stats.hasErrors()).to.be.false;
-            const outputPath = stats.toJson().outputPath;
-            // tslint:disable-next-line: no-unused-expression
-            expect(!outputPath).to.be.false;
-            const { window } = new JSDOM(readFileSync(join(outputPath || "", "index.html")));
-            const { href, rel, media } = findLinkElement(window.document.head.children, window.HTMLLinkElement);
-            expect(href).to.equal("main.css");
-            expect(rel).to.equal("stylesheet");
-            expect(media).to.equal("print");
-            done();
-        });
+const createMochaFunc = (options: webpack.Configuration, expectedMedia: string): Mocha.Func =>
+    (done) => webpack(options, (err, stats) => {
+        // tslint:disable-next-line: no-unused-expression
+        expect(err).to.be.null;
+        // tslint:disable-next-line: no-unused-expression
+        expect(stats.hasErrors()).to.be.false;
+        const outputPath = stats.toJson().outputPath;
+        // tslint:disable-next-line: no-unused-expression
+        expect(!outputPath).to.be.false;
+        const { window } = new JSDOM(readFileSync(join(outputPath || "", "index.html")));
+        const { href, rel, media } = findLinkElement(window.document.head.children, window.HTMLLinkElement);
+        expect(href).to.equal("main.css");
+        expect(rel).to.equal("stylesheet");
+        expect(media).to.equal(expectedMedia);
+        done();
     });
+
+describe(AsyncCssPlugin.name, () => {
+    it("should modify index.html", createMochaFunc(asyncOptions, "print"));
 });
