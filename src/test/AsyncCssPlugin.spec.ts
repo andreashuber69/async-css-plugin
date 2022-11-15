@@ -1,9 +1,9 @@
 import { expect } from "chai";
-import { readFileSync } from "fs";
+import { readFileSync, rmSync } from "fs";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { JSDOM } from "jsdom";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import { join, resolve } from "path";
+import { join } from "path";
 import type { Configuration } from "webpack";
 // tslint:disable-next-line: no-duplicate-imports match-default-export-name
 import webpack from "webpack";
@@ -12,9 +12,9 @@ import webpack from "webpack";
 import AsyncCssPlugin from "../AsyncCssPlugin";
 
 const createConfig = (plugins: Configuration["plugins"]): Configuration => ({
-    entry: resolve(__dirname, "./index.js"),
+    entry: `${__dirname}/index.js`,
     output: {
-        path: resolve(__dirname, "./output"),
+        path: `${__dirname}/dist`,
         filename: "index_bundle.js",
     },
     module: {
@@ -51,14 +51,15 @@ const createMochaFunc = (options: Configuration, expectedMedia: string): Mocha.F
         expect(err).to.be.null;
         // tslint:disable-next-line: no-unused-expression
         expect(stats?.hasErrors()).to.be.false;
-        const outputPath = stats?.toJson().outputPath;
+        const outputPath = stats?.toJson().outputPath || "";
         // tslint:disable-next-line: no-unused-expression
         expect(!outputPath).to.be.false;
-        const { window } = new JSDOM(readFileSync(join(outputPath || "", "index.html")));
+        const { window } = new JSDOM(readFileSync(join(outputPath, "index.html")));
         const { href, rel, media } = findLinkElement(window.document.head.children, window.HTMLLinkElement);
         expect(href).to.equal("main.css");
         expect(rel).to.equal("stylesheet");
         expect(media).to.equal(expectedMedia);
+        rmSync(outputPath, { recursive: true });
         done();
     });
 
