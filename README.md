@@ -47,14 +47,18 @@ much better perceived responsiveness of your site.
 
 ## Prerequisites
 
-This plugin is designed for applications that are built using **[webpack](https://webpack.js.org/)**. More specifically,
-your application must satisfy **one** of the following conditions:
+This plugin is designed for applications that are built using **[webpack](https://v4.webpack.js.org/)**. More
+specifically, your application must satisfy **one** of the following conditions:
 
 - Your application is built using **webpack** directly or a framework that allows for the configuration of **webpack**
   with *[webpack.config.js](https://webpack.js.org/configuration/)*.
 - Your application is built using a framework like **[Vue](https://vuejs.org)** that "abstracts away"
   *webpack.config.js* but provides a [different way](https://cli.vuejs.org/guide/webpack.html#chaining-advanced) to
   modify the **webpack** configuration.
+
+> This version of the plugin has so far only been tested with webpack v4. Due to the fact that only a very stable API
+> of a plugin is used internally (namely `HtmlWebpackPlugin.getHooks`) it might work with v5-based projects but it
+> hasn't been tested yet.
 
 ## Getting Started
 
@@ -69,27 +73,49 @@ more information.
 
 #### webpack.config.js
 
-If your project does not yet contain *[webpack.config.js](https://webpack.js.org/configuration/)*, please create one in
-the same folder as *package.json*. Otherwise, please modify accordingly. `AsyncCssPlugin` depends on
-[HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin/), so *webpack.config.js* should minimally look
-as follows:
+If your project does not yet contain *[webpack.config.js](https://v4.webpack.js.org/configuration/)*, please create one
+in the same folder as *package.json*. Otherwise, please modify accordingly. In order for webpack to generate HTML, you
+need to add [html-webpack-plugin](https://v4.webpack.js.org/plugins/html-webpack-plugin/). Moreover, for CSS to be
+generated into separate files it is recommended to use
+[mini-css-extract-plugin](https://v4.webpack.js.org/plugins/mini-css-extract-plugin/) and
+[css-loader](https://v4.webpack.js.org/loaders/css-loader/). You can add these dependencies as follows:
+
+`npm install html-webpack-plugin mini-css-extract-plugin css-loader --save-dev`
+
+Given the configuration recommendations for these plugins with added asynchronous CSS loading your *webpack.config.js*
+should minimally look something like this:
 
 ``` js
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const AsyncCssPlugin = require("async-css-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const AsyncCssPlugin = require("async-css-plugin"); // Added for async CSS loading
 
 module.exports = {
+    entry: __dirname + "/index.js",
+    output: {
+        path: __dirname, "/dist",
+        filename: "index_bundle.js",
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: [MiniCssExtractPlugin.loader, "css-loader"],
+            },
+        ],
+    },
     plugins: [
         new HtmlWebpackPlugin(),
-        new AsyncCssPlugin({ /* options */ })
+        new MiniCssExtractPlugin(),
+        new AsyncCssPlugin({ /* options */ }), // Added for async CSS loading
     ]
 };
 ```
 
 #### vue.config.js
 
-If your **Vue** project does not yet contain *[vue.config.js](https://cli.vuejs.org/config/)*, please create one in the same
-folder as *package.json*. Otherwise, please adapt accordingly:
+If your **Vue** project does not yet contain *[vue.config.js](https://cli.vuejs.org/config/)*, please create one in the
+same folder as *package.json*. Otherwise, please adapt accordingly:
 
 ``` js
 const AsyncCssPlugin = require("async-css-plugin");
@@ -101,8 +127,9 @@ module.exports = {
 }
 ```
 
-By default, **Vue** internally already uses [HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin/), so
-there should be no need to configure that in *vue.config.js*.
+By default, **Vue** internally already uses
+[html-webpack-plugin](https://v4.webpack.js.org/plugins/html-webpack-plugin/) and generates separate *.css* files, so
+there should be no need to make additional changes in *vue.config.js*.
 
 ## Usage
 
