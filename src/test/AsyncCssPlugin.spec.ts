@@ -21,6 +21,7 @@ const createConfig = (plugins: Configuration["plugins"]): Configuration => ({
         rules: [
             {
                 test: /\.css$/i,
+                // tslint:disable-next-line: no-unsafe-any
                 use: [MiniCssExtractPlugin.loader, "css-loader"],
             },
         ],
@@ -29,6 +30,7 @@ const createConfig = (plugins: Configuration["plugins"]): Configuration => ({
     mode: "development",
 });
 
+// tslint:disable-next-line: no-unsafe-any
 const standardPlugins = [new HtmlWebpackPlugin(), new MiniCssExtractPlugin()];
 const standardOptions = createConfig(standardPlugins);
 const asyncOptions = createConfig([...standardPlugins, new AsyncCssPlugin({ logLevel: "info" })]);

@@ -1,5 +1,5 @@
 import HtmlWebpackPlugin from "html-webpack-plugin";
-import type { Compilation, Compiler } from "webpack";
+import type { Compiler } from "webpack";
 
 import { MessageType, Options } from "./Options";
 
@@ -35,8 +35,9 @@ class AsyncCssPlugin {
         }
     }
 
-    private checkHook(compilation: Compilation) {
+    private checkHook(compilation: any) {
         if (HtmlWebpackPlugin && HtmlWebpackPlugin.getHooks) {
+            // tslint:disable-next-line: no-unsafe-any
             const hooks = HtmlWebpackPlugin.getHooks(compilation);
             hooks.alterAssetTags.tap(AsyncCssPlugin.name, (data) => this.checkTags(data, data.assetTags.styles));
         } else {
