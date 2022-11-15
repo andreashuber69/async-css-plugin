@@ -9,7 +9,7 @@ import type { Configuration } from "webpack";
 import webpack from "webpack";
 
 // tslint:disable-next-line: no-default-import
-import AsyncCssPlugin from "../AsyncCssPlugin";
+import AsyncCssPlugin from "../../AsyncCssPlugin";
 
 const createConfig = (plugins: Configuration["plugins"]): Configuration => ({
     entry: `${__dirname}/index.js`,
@@ -64,6 +64,8 @@ const createMochaFunc = (options: Configuration, expectedMedia: string): Mocha.F
     });
 
 describe(AsyncCssPlugin.name, () => {
-    it("should not modify index.html", createMochaFunc(standardOptions, ""));
-    it("should modify index.html", createMochaFunc(asyncOptions, "print"));
+    describe("webpack", () => {
+        it("should not modify index.html", createMochaFunc(standardOptions, ""));
+        it("should modify index.html", createMochaFunc(asyncOptions, "print"));
+    });
 });
