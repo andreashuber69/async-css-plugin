@@ -33,7 +33,7 @@
     "lint": "tslint --project tsconfig.json --config tslint.json --format verbose",
     "prebuild": "npm run lint",
     "build": "tsc",
-    "testlegacy": "ts-mocha src/test/*.spec.ts",
+    "testlegacy": "ts-mocha src/test/**/*.spec.ts",
     "test": "export NODE_OPTIONS=--openssl-legacy-provider && ts-mocha src/test/**/*.spec.ts",
     "preci": "npm run build",
     "ci": "npm run testlegacy"
