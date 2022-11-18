@@ -1,39 +1,15 @@
 import { expect } from "chai";
 import { readFileSync, rmSync } from "fs";
-import HtmlWebpackPlugin from "html-webpack-plugin";
 import { JSDOM } from "jsdom";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { join } from "path";
 import type { Configuration } from "webpack";
-// tslint:disable-next-line: no-duplicate-imports match-default-export-name
+// tslint:disable-next-line: no-duplicate-imports
 import webpack from "webpack";
 
 // tslint:disable-next-line: no-default-import
-import AsyncCssPlugin from "../../AsyncCssPlugin";
-
-const createConfig = (plugins: Configuration["plugins"]): Configuration => ({
-    entry: `${__dirname}/index.js`,
-    output: {
-        path: `${__dirname}/dist`,
-        filename: "index_bundle.js",
-    },
-    module: {
-        rules: [
-            {
-                test: /\.css$/i,
-                // tslint:disable-next-line: no-unsafe-any
-                use: [MiniCssExtractPlugin.loader, "css-loader"],
-            },
-        ],
-    },
-    plugins,
-    mode: "development",
-});
-
-// tslint:disable-next-line: no-unsafe-any
-const standardPlugins = [new HtmlWebpackPlugin(), new MiniCssExtractPlugin()];
-const standardOptions = createConfig(standardPlugins);
-const asyncOptions = createConfig([...standardPlugins, new AsyncCssPlugin({ logLevel: "info" })]);
+import asyncOptions from "./async.config.js";
+// tslint:disable-next-line: no-default-import
+import standardOptions from "./standard.config.js";
 
 const findLinkElement = <T>(collection: HTMLCollection, ctor: new () => T) => {
     for (const item of collection) {
@@ -63,9 +39,11 @@ const createMochaFunc = (options: Configuration, expectedMedia: string): Mocha.F
         done();
     });
 
-describe(AsyncCssPlugin.name, () => {
+describe("AsyncCssPlugin", () => {
     describe("webpack", () => {
+        // tslint:disable-next-line: no-unsafe-any
         it("should not modify index.html", createMochaFunc(standardOptions, ""));
+        // tslint:disable-next-line: no-unsafe-any
         it("should modify index.html", createMochaFunc(asyncOptions, "print"));
     });
 });
