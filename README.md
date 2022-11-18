@@ -119,17 +119,18 @@ same folder as *package.json*. Otherwise, please adapt accordingly:
 
 ``` js
 const AsyncCssPlugin = require("async-css-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     chainWebpack: config => {
-        config.plugin("async-css-plugin").use(AsyncCssPlugin, [{ /* options */ }]);
-    }
+        config.plugin("html-webpack-plugin").use(HtmlWebpackPlugin);
+        config.plugin("async-css-plugin").use(AsyncCssPlugin, [{ logLevel: "info" }]);
+    },
 }
 ```
 
-By default, **Vue** internally already uses
-[html-webpack-plugin](https://v4.webpack.js.org/plugins/html-webpack-plugin/) and generates separate *.css* files, so
-there should be no need to make additional changes in *vue.config.js*.
+By default, **Vue** already generates separate *.css* files, so there should be no need to make additional changes in
+*vue.config.js*.
 
 ## Usage
 
