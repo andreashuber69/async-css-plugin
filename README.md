@@ -56,9 +56,9 @@ specifically, your application must satisfy **one** of the following conditions:
   *webpack.config.js* but provides a [different way](https://cli.vuejs.org/guide/webpack.html#chaining-advanced) to
   modify the **webpack** configuration.
 
-> This version of the plugin has so far only been tested with webpack v4. Due to the fact that only a very stable API
-> of a plugin is used internally (namely `HtmlWebpackPlugin.getHooks`) it might work with v5-based projects but it
-> hasn't been tested yet.
+> This version of the plugin has so far only been tested with **webpack** v4 and **Vue** v2. Due to the fact that only a
+> very stable API of a plugin is used internally (namely `HtmlWebpackPlugin.getHooks`) it might work with projects that
+> are based on later versions of these frameworks but it hasn't been tested yet.
 
 ## Getting Started
 
