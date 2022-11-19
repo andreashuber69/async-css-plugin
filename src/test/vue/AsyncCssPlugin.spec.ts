@@ -3,15 +3,7 @@ import { exec } from "child_process";
 import { readFileSync, rmSync } from "fs";
 import { JSDOM } from "jsdom";
 
-const findCssLinkElement = <T extends { readonly rel: string }>(collection: HTMLCollection, ctor: new () => T) => {
-    for (const item of collection) {
-        if (item instanceof ctor && (item.rel === "stylesheet")) {
-            return item;
-        }
-    }
-
-    throw new Error(`${window.HTMLLinkElement.name} element not found.`);
-};
+import { findElement } from "../findElement";
 
 const createMochaFunc = (expectedMedia: string): Mocha.Func =>
     function(done) {
@@ -21,10 +13,11 @@ const createMochaFunc = (expectedMedia: string): Mocha.Func =>
             expect(error).to.be.null;
             const outputPath = `${__dirname}/dist`;
             const { window } = new JSDOM(readFileSync(`${outputPath}/index.html`));
-            const { href, media } = findCssLinkElement(window.document.head.children, window.HTMLLinkElement);
+            const { href, media } = findElement(window.document.head.children, window.HTMLLinkElement);
             expect(href).to.equal("/css/app.7a683809.css");
             expect(media).to.equal(expectedMedia);
             rmSync(outputPath, { recursive: true });
+            rmSync(`${__dirname}/node_modules`, { recursive: true }); // vue v2 creates this during compilation
             done();
         });
     };
