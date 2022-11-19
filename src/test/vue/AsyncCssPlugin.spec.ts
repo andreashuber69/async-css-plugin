@@ -1,9 +1,8 @@
 import { expect } from "chai";
 import { exec } from "child_process";
-import { readFileSync, rmSync } from "fs";
-import { JSDOM } from "jsdom";
+import { rmSync } from "fs";
 
-import { findElement } from "../findElement";
+import { getLinkProperties } from "../getLinkProperties";
 
 const createMochaFunc = (expectedMedia: string): Mocha.Func =>
     function(done) {
@@ -12,8 +11,7 @@ const createMochaFunc = (expectedMedia: string): Mocha.Func =>
             // tslint:disable-next-line: no-unused-expression
             expect(error).to.be.null;
             const outputPath = `${__dirname}/dist`;
-            const { window } = new JSDOM(readFileSync(`${outputPath}/index.html`));
-            const { href, media } = findElement(window.document.head.children, window.HTMLLinkElement);
+            const { href, media } = getLinkProperties(`${outputPath}/index.html`);
             expect(href).to.equal("/css/app.7a683809.css");
             expect(media).to.equal(expectedMedia);
             rmSync(outputPath, { recursive: true });

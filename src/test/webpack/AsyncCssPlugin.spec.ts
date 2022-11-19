@@ -1,12 +1,11 @@
 import { expect } from "chai";
-import { readFileSync, rmSync } from "fs";
-import { JSDOM } from "jsdom";
+import { rmSync } from "fs";
 import { join } from "path";
 import type { Configuration } from "webpack";
 // tslint:disable-next-line: no-duplicate-imports
 import webpack from "webpack";
 
-import { findElement } from "../findElement";
+import { getLinkProperties } from "../getLinkProperties";
 
 // tslint:disable-next-line: no-default-import
 import asyncOptions from "./async.config.js";
@@ -21,9 +20,8 @@ const createMochaFunc = (options: Configuration, expectedMedia: string): Mocha.F
         expect(stats?.hasErrors()).to.be.false;
         const outputPath = stats?.toJson().outputPath || "";
         // tslint:disable-next-line: no-unused-expression
-        expect(!outputPath).to.be.false;
-        const { window } = new JSDOM(readFileSync(join(outputPath, "index.html")));
-        const { href, media } = findElement(window.document.head.children, window.HTMLLinkElement);
+        expect(!!outputPath).to.be.true;
+        const { href, media } = getLinkProperties(join(outputPath, "index.html"));
         expect(href).to.equal("main.css");
         expect(media).to.equal(expectedMedia);
         rmSync(outputPath, { recursive: true });
