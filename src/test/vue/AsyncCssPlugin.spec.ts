@@ -5,7 +5,7 @@ import { JSDOM } from "jsdom";
 
 const findCssLinkElement = <T extends { readonly rel: string }>(collection: HTMLCollection, ctor: new () => T) => {
     for (const item of collection) {
-        if (item instanceof ctor && item.rel === "stylesheet") {
+        if (item instanceof ctor && (item.rel === "stylesheet")) {
             return item;
         }
     }
