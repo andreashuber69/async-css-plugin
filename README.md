@@ -51,7 +51,7 @@ This plugin is designed for applications that are built using **[webpack](https:
 specifically, your application must satisfy **one** of the following conditions:
 
 - Your application is built using **webpack** directly or a framework that allows for the configuration of **webpack**
-  with *[webpack.config.js](https://webpack.js.org/configuration/)*.
+  with *[webpack.config.js](https://v4.webpack.js.org/configuration/)*.
 - Your application is built using a framework like **[Vue](https://vuejs.org)** that "abstracts away"
   *webpack.config.js* but provides a [different way](https://cli.vuejs.org/guide/webpack.html#chaining-advanced) to
   modify the **webpack** configuration.
