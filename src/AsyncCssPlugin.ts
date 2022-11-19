@@ -1,4 +1,5 @@
-import * as HtmlWebpackPlugin from "html-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import type { Compiler } from "webpack";
 
 import { MessageType, Options } from "./Options";
 
@@ -8,14 +9,12 @@ class AsyncCssPlugin {
         Object.assign(this.options, options);
     }
 
-    // tslint:disable-next-line: no-unsafe-any
-    public apply({ hooks }: any): void {
+    public apply({ hooks }: Compiler): void {
         if (!hooks) {
             this.log("error", "hooks is undefined. Is the version of your webpack package too old?");
         }
 
-        // tslint:disable-next-line: no-unsafe-any
-        hooks.compilation.tap(AsyncCssPlugin.name, (compilation: any) => this.checkHook(compilation));
+        hooks.compilation.tap(AsyncCssPlugin.name, (compilation) => this.checkHook(compilation));
     }
 
     private static assertUnreachable(value: never): never {
@@ -37,15 +36,7 @@ class AsyncCssPlugin {
     }
 
     private checkHook(compilation: any) {
-        // tslint:disable: no-unsafe-any
-        const { hooks: { htmlWebpackPluginAlterAssetTags } } = compilation;
-
-        if (htmlWebpackPluginAlterAssetTags) {
-            // html-webpack-plugin v3
-            htmlWebpackPluginAlterAssetTags.tap(AsyncCssPlugin.name, (page: any) => this.checkTags(page, page.head));
-            // tslint:enable: no-unsafe-any
-        } else if (HtmlWebpackPlugin && HtmlWebpackPlugin.getHooks) {
-            // html-webpack-plugin v4
+        if (HtmlWebpackPlugin && HtmlWebpackPlugin.getHooks) {
             // tslint:disable-next-line: no-unsafe-any
             const hooks = HtmlWebpackPlugin.getHooks(compilation);
             hooks.alterAssetTags.tap(AsyncCssPlugin.name, (data) => this.checkTags(data, data.assetTags.styles));
@@ -67,10 +58,10 @@ class AsyncCssPlugin {
         }
     }
 
-    private checkTags<TOutput extends { readonly outputName: string }>(output: TOutput, tags: any[]) {
-        // tslint:disable-next-line: no-unsafe-any
+    private checkTags<TOutput extends { readonly outputName: string }>(
+        output: TOutput, tags: HtmlWebpackPlugin.HtmlTagObject[],
+    ) {
         for (const { tagName, attributes } of tags) {
-            // tslint:disable-next-line: no-unsafe-any
             if ((tagName === "link") && (attributes.rel === "stylesheet")) {
                 this.processTag(output.outputName, attributes);
             }
@@ -79,9 +70,8 @@ class AsyncCssPlugin {
         return output;
     }
 
-    // tslint:disable: no-unsafe-any
     // tslint:disable-next-line: prefer-function-over-method
-    private processTag(outputName: string, attributes: any) {
+    private processTag(outputName: string, attributes: HtmlWebpackPlugin.HtmlTagObject["attributes"]) {
         if (attributes.media) {
             this.log("warn", `The link for ${attributes.href} already has a media attribute, will not modify.`);
         } else {
@@ -91,7 +81,6 @@ class AsyncCssPlugin {
             this.log("info", `${outputName}: Modified link to ${attributes.href}.`);
         }
     }
-    // tslint:enable: no-unsafe-any
 }
 
 export = AsyncCssPlugin;
