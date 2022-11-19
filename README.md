@@ -8,8 +8,8 @@
   <a href="https://github.com/andreashuber69/async-css-plugin/releases/latest">
     <img src="https://img.shields.io/github/release-date/andreashuber69/async-css-plugin.svg" alt="Release Date">
   </a>
-  <a href="https://travis-ci.com/andreashuber69/async-css-plugin">
-    <img src="https://travis-ci.com/andreashuber69/async-css-plugin.svg?branch=develop" alt="Build">
+  <a href="https://travis-ci.com/github/andreashuber69/async-css-plugin">
+    <img src="https://travis-ci.com/andreashuber69/async-css-plugin.svg?branch=master" alt="Build">
   </a>
   <a href="https://github.com/andreashuber69/async-css-plugin/issues">
     <img src="https://img.shields.io/github/issues-raw/andreashuber69/async-css-plugin.svg" alt="Issues">
