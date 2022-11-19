@@ -86,9 +86,9 @@ Given the configuration recommendations for these plugins with added asynchronou
 should minimally look something like this:
 
 ``` js
+const AsyncCssPlugin = require("async-css-plugin"); // Added for async CSS loading
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const AsyncCssPlugin = require("async-css-plugin"); // Added for async CSS loading
 
 module.exports = {
     entry: __dirname + "/index.js",
@@ -107,7 +107,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin(),
         new MiniCssExtractPlugin(),
-        new AsyncCssPlugin({ /* options */ }), // Added for async CSS loading
+        new AsyncCssPlugin({ logLevel: "info" }), // Added for async CSS loading
     ]
 };
 ```
@@ -118,15 +118,16 @@ If your **Vue** project does not yet contain *[vue.config.js](https://cli.vuejs.
 same folder as *package.json*. Otherwise, please adapt accordingly:
 
 ``` js
-const AsyncCssPlugin = require("async-css-plugin");
+const AsyncCssPlugin = require("async-css-plugin"); // Added for async CSS loading
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     chainWebpack: config => {
+        // Added for async CSS loading
         config.plugin("html-webpack-plugin").use(HtmlWebpackPlugin);
         config.plugin("async-css-plugin").use(AsyncCssPlugin, [{ logLevel: "info" }]);
     },
-}
+};
 ```
 
 By default, **Vue** already generates separate *.css* files, so there should be no need to make additional changes in
