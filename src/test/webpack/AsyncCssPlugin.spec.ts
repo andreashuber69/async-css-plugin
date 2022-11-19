@@ -8,9 +8,9 @@ import webpack from "webpack";
 import { getLinkProperties } from "../getLinkProperties";
 
 // tslint:disable-next-line: no-default-import
-import asyncOptions from "./async.config.js";
+import asyncOptions from "./async.config";
 // tslint:disable-next-line: no-default-import
-import standardOptions from "./standard.config.js";
+import standardOptions from "./standard.config";
 
 const createMochaFunc = (options: Configuration, expectedMedia: string): Mocha.Func =>
     (done) => webpack(options, (err, stats) => {

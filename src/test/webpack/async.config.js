@@ -1,5 +1,5 @@
 const AsyncCssPlugin = require("../../../dist/AsyncCssPlugin"); // Added for async CSS loading
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {

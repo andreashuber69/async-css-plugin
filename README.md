@@ -87,7 +87,7 @@ should minimally look something like this:
 
 ``` js
 const AsyncCssPlugin = require("async-css-plugin"); // Added for async CSS loading
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
