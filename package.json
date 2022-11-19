@@ -34,9 +34,9 @@
     "lint": "tslint --project tsconfig.json --config tslint.json --format verbose",
     "prebuild": "npm run lint",
     "build": "tsc",
-    "test": "tsc && export NODE_OPTIONS=--openssl-legacy-provider && ts-mocha src/test/**/*.spec.ts",
+    "test": "tsc && export NODE_OPTIONS=--openssl-legacy-provider && ts-mocha ./src/test/**/*.spec.ts",
     "ci": "npm run build",
-    "postci": "ts-mocha src/test/**/*.spec.ts"
+    "postci": "ts-mocha ./src/test/**/*.spec.ts"
   },
   "devDependencies": {
     "@types/chai": "^4.3.4",
