@@ -3,7 +3,7 @@
     "davidanson.vscode-markdownlint",
     "eamodio.gitlens",
     "eg2.vscode-npm-script",
-    "ms-vscode.vscode-typescript-tslint-plugin",
+    "dbaeumer.vscode-eslint",
     "streetsidesoftware.code-spell-checker",
     "vector-of-bool.gitflow"
   ]

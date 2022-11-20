@@ -108,7 +108,7 @@ module.exports = {
         new HtmlWebpackPlugin(),
         new MiniCssExtractPlugin(),
         new AsyncCssPlugin({ logLevel: "info" }), // Added for async CSS loading
-    ]
+    ],
 };
 ```
 
@@ -123,8 +123,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     chainWebpack: config => {
-        // Added for async CSS loading
         config.plugin("html-webpack-plugin").use(HtmlWebpackPlugin);
+        // Added for async CSS loading
         config.plugin("async-css-plugin").use(AsyncCssPlugin, [{ logLevel: "info" }]);
     },
 };
