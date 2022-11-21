@@ -47,18 +47,14 @@ much better perceived responsiveness of your site.
 
 ## Prerequisites
 
-This plugin is designed for applications that are built using **[webpack](https://v4.webpack.js.org/)**. More
+This plugin is designed for applications that are built using **[webpack](https://webpack.js.org/)**. More
 specifically, your application must satisfy **one** of the following conditions:
 
 - Your application is built using **webpack** directly or a framework that allows for the configuration of **webpack**
-  with *[webpack.config.js](https://v4.webpack.js.org/configuration/)*.
+  with *[webpack.config.js](https://webpack.js.org/configuration/)*.
 - Your application is built using a framework like **[Vue](https://vuejs.org)** that "abstracts away"
   *webpack.config.js* but provides a [different way](https://cli.vuejs.org/guide/webpack.html#chaining-advanced) to
   modify the **webpack** configuration.
-
-> This version of the plugin has so far only been tested with **webpack** v4 and **Vue** v2. Due to the fact that only a
-> very stable API of a plugin is used internally (namely `HtmlWebpackPlugin.getHooks`) it might work with projects that
-> are based on later versions of these frameworks but it hasn't been tested yet.
 
 ## Getting Started
 
@@ -71,14 +67,14 @@ specifically, your application must satisfy **one** of the following conditions:
 `AsyncCssPlugin` configuration depends on how your project is set up, please see [Prerequisites](#prerequisites) for
 more information.
 
-#### webpack.config.js
+#### webpack.config.js for webpack v4 & v5
 
-If your project does not yet contain *[webpack.config.js](https://v4.webpack.js.org/configuration/)*, please create one
+If your project does not yet contain *[webpack.config.js](https://webpack.js.org/configuration/)*, please create one
 in the same folder as *package.json*. Otherwise, please modify accordingly. In order for webpack to generate HTML, you
-need to add [html-webpack-plugin](https://v4.webpack.js.org/plugins/html-webpack-plugin/). Moreover, for CSS to be
+need to add [html-webpack-plugin](https://webpack.js.org/plugins/html-webpack-plugin/). Moreover, for CSS to be
 generated into separate files it is recommended to use
-[mini-css-extract-plugin](https://v4.webpack.js.org/plugins/mini-css-extract-plugin/) and
-[css-loader](https://v4.webpack.js.org/loaders/css-loader/). You can add these dependencies as follows:
+[mini-css-extract-plugin](https://webpack.js.org/plugins/mini-css-extract-plugin/) and
+[css-loader](https://webpack.js.org/loaders/css-loader/). You can add these dependencies as follows:
 
 `npm install html-webpack-plugin mini-css-extract-plugin css-loader --save-dev`
 
@@ -112,19 +108,16 @@ module.exports = {
 };
 ```
 
-#### vue.config.js
+#### vue.config.js for Vue v3
 
-If your **Vue** project does not yet contain *[vue.config.js](https://cli.vuejs.org/config/)*, please create one in the
+If your **Vue** v3 project does not yet contain *[vue.config.js](https://cli.vuejs.org/config/)*, please create one in the
 same folder as *package.json*. Otherwise, please adapt accordingly:
 
 ``` js
-const AsyncCssPlugin = require("async-css-plugin"); // Added for async CSS loading
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const AsyncCssPlugin = require("async-css-plugin");
 
 module.exports = {
     chainWebpack: config => {
-        config.plugin("html-webpack-plugin").use(HtmlWebpackPlugin);
-        // Added for async CSS loading
         config.plugin("async-css-plugin").use(AsyncCssPlugin, [{ logLevel: "info" }]);
     },
 };
@@ -132,6 +125,27 @@ module.exports = {
 
 By default, **Vue** already generates separate *.css* files, so there should be no need to make additional changes in
 *vue.config.js*.
+
+#### vue.config.js for Vue v2
+
+If your **Vue** v2 project does not yet contain *[vue.config.js](https://cli.vuejs.org/config/)*, please create one in the
+same folder as *package.json*. Otherwise, please adapt accordingly:
+
+``` js
+const AsyncCssPlugin = require("async-css-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+module.exports = {
+    chainWebpack: config => {
+        config.plugin("html-webpack-plugin").use(HtmlWebpackPlugin);
+        config.plugin("async-css-plugin").use(AsyncCssPlugin, [{ logLevel: "info" }]);
+    },
+};
+```
+
+Note that for **Vue** v2 it seems to be necessary to add `HtmlWebpackPlugin` even though the plugin is already
+used internally. In **Vue** v3 however, adding this plugin leads to an error during build, so the config **must** be
+different in v2 vs. v3.
 
 ## Usage
 

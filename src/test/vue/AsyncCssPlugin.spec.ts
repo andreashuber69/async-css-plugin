@@ -13,10 +13,9 @@ const createMochaFunc = (expectedMedia: string): Mocha.Func =>
             expect(Boolean(error)).to.equal(false);
             const outputPath = `${__dirname}/dist`;
             const { href, media } = getLinkProperties(`${outputPath}/index.html`);
-            expect(href).to.equal("/css/app.7a683809.css");
+            expect(href).to.equal("/css/app.5e6ccbdf.css");
             expect(media).to.equal(expectedMedia);
             rmSync(outputPath, { recursive: true });
-            rmSync(`${__dirname}/node_modules`, { recursive: true }); // Vue v2 creates this during compilation
             done();
         });
     };
