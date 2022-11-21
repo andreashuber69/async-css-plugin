@@ -1,8 +1,10 @@
 {
   "extends": "@tsconfig/node-lts-strictest/tsconfig.json",
-  "include": ["src/**/*"],
   "compilerOptions": {
-    "outDir": "./dist/",
-    "checkJs": false
-  }
+    "checkJs": false,
+    "declaration": true,
+    "outDir": "dist",
+    "sourceMap": true
+  },
+  "include": ["src/**/*"]
 }
