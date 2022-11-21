@@ -69,9 +69,15 @@ more information.
 
 #### webpack.config.js for webpack v4 & v5
 
-If your project does not yet contain *[webpack.config.js](https://webpack.js.org/configuration/)*, please create one
-in the same folder as *package.json*. Otherwise, please modify accordingly. In order for webpack to generate HTML, you
-need to add [html-webpack-plugin](https://webpack.js.org/plugins/html-webpack-plugin/). Moreover, for CSS to be
+If your project is configurable with *[webpack.config.js](https://webpack.js.org/configuration/)*, it most likely
+already contains this file. For example, if you create a new [React](https://reactjs.org/) application with
+[create-react-app](https://www.npmjs.com/package/create-react-app) and then run `npm run eject`, you'll find the file
+in the *config* directory. In this case you usually only need to add 2 lines of code, as detailed below.
+
+If you started with webpack directly, e.g. as described
+[here](https://webpack.js.org/guides/getting-started/#basic-setup), then you've probably already created
+*webpack.config.js* yourself. In this case, you first need to get webpack to generate HTML, with
+[html-webpack-plugin](https://webpack.js.org/plugins/html-webpack-plugin/). Moreover, for CSS to be
 generated into separate files it is recommended to use
 [mini-css-extract-plugin](https://webpack.js.org/plugins/mini-css-extract-plugin/) and
 [css-loader](https://webpack.js.org/loaders/css-loader/). You can add these dependencies as follows:
