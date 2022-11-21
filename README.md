@@ -51,7 +51,7 @@ This plugin is designed for applications that are built using **[webpack](https:
 specifically, your application must satisfy **one** of the following conditions:
 
 - Your application is built using **webpack** directly or a framework that allows for the configuration of **webpack**
-  with *[webpack.config.js](https://webpack.js.org/configuration/)*.
+  with *[webpack.config.js](https://webpack.js.org/configuration/)*, like e.g. [React](https://reactjs.org/).
 - Your application is built using a framework like **[Vue](https://vuejs.org)** that "abstracts away"
   *webpack.config.js* but provides a [different way](https://cli.vuejs.org/guide/webpack.html#chaining-advanced) to
   modify the **webpack** configuration.
@@ -70,7 +70,7 @@ more information.
 #### webpack.config.js for webpack v4 & v5
 
 If your project is configurable with *[webpack.config.js](https://webpack.js.org/configuration/)*, it most likely
-already contains this file. For example, if you create a new [React](https://reactjs.org/) application with
+already contains this file. For example, if you create a new **React** application with
 [create-react-app](https://www.npmjs.com/package/create-react-app) and then run `npm run eject`, you'll find the file
 in the *config* directory. In this case you usually only need to add 2 lines of code, as detailed below.
 
