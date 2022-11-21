@@ -3,8 +3,7 @@
   "compilerOptions": {
     "checkJs": false,
     "declaration": true,
-    "outDir": "dist",
-    "sourceMap": true
+    "outDir": "dist"
   },
   "include": ["src/**/*"]
 }
