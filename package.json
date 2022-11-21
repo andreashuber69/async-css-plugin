@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "@andreashuber69/eslint-config": "^1.0.2",
+    "@tsconfig/node-lts-strictest": "^18.12.1",
     "@types/chai": "^4.3.4",
     "@types/jsdom": "^20.0.1",
     "@types/mini-css-extract-plugin": "^1.4.3",

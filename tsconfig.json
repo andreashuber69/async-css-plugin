@@ -1,18 +1,8 @@
 {
+  "extends": "@tsconfig/node-lts-strictest/tsconfig.json",
+  "include": ["src/**/*"],
   "compilerOptions": {
-    "declaration": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": ["es2017", "dom"],
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": false,
-    "noImplicitReturns": true,
     "outDir": "./dist/",
-    "removeComments": true,
-    "sourceMap": true,
-    "strict": true,
-    "target": "es2017"
+    "checkJs": false
   }
 }

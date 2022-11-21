@@ -7,8 +7,13 @@ import webpack from "webpack";
 
 import { getLinkProperties } from "../getLinkProperties";
 
-import asyncOptions from "./async.config";
-import standardOptions from "./standard.config";
+// @ts-expect-error TS7016
+import asyncOptionsImport from "./async.config";
+// @ts-expect-error TS7016
+import standardOptionsImport from "./standard.config";
+
+const asyncOptions = asyncOptionsImport as Configuration;
+const standardOptions = standardOptionsImport as Configuration;
 
 const createMochaFunc = (options: Configuration, expectedMedia: string): Mocha.Func =>
     (done) => webpack(options, (err, stats) => {
