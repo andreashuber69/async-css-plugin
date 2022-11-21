@@ -23,8 +23,7 @@
   "engines": {
     "node": ">=12.22.0"
   },
-  "main": "./dist/AsyncCssPlugin.js",
-  "types": "./dist/AsyncCssPlugin.d.ts",
+  "main": "dist/AsyncCssPlugin.js",
   "files": [
     "/dist/",
     "!/dist/test/"
