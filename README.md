@@ -56,6 +56,11 @@ specifically, your application must satisfy **one** of the following conditions:
   *webpack.config.js* but provides a [different way](https://cli.vuejs.org/guide/webpack.html#chaining-advanced) to
   modify the **webpack** configuration.
 
+> NOTE: Unfortunately, this plugin does not seem to work with apps based on [Angular](https://angular.io/), see
+> [this repo](https://github.com/andreashuber69/async-css-angular-example) for more information. The steps still
+> work with **Angular** v14, except for step 9, which can be safely skipped (with v14 css is always extracted, the
+> `extractCss` setting is therefore no longer supported).
+
 ## Getting Started
 
 ### Installation
