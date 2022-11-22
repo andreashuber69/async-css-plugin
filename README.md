@@ -72,7 +72,20 @@ more information.
 If your project is configurable with *[webpack.config.js](https://webpack.js.org/configuration/)*, it most likely
 already contains this file. For example, if you create a new **React** application with
 [create-react-app](https://www.npmjs.com/package/create-react-app) and then run `npm run eject`, you'll find the file
-in the *config* directory. In this case you usually only need to add 2 lines of code, as detailed below.
+in the *config* folder. In this case you usually only need to add 2 lines of code:
+
+``` js
+// ... existing requires ...
+const AsyncCssPlugin = require("async-css-plugin"); // added for async CSS loading
+
+module.exports = {
+    // ... existing options ...
+    plugins: [
+        // ... existing plugins ...
+        new AsyncCssPlugin({ logLevel: "info" }), // added for async CSS loading
+    ],
+};
+```
 
 If you started with webpack directly, e.g. as described
 [here](https://webpack.js.org/guides/getting-started/#basic-setup), then you've probably already created
@@ -88,7 +101,7 @@ Given the configuration recommendations for these plugins with added asynchronou
 should minimally look something like this:
 
 ``` js
-const AsyncCssPlugin = require("async-css-plugin"); // Added for async CSS loading
+const AsyncCssPlugin = require("async-css-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -109,7 +122,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin(),
         new MiniCssExtractPlugin(),
-        new AsyncCssPlugin({ logLevel: "info" }), // Added for async CSS loading
+        new AsyncCssPlugin({ logLevel: "info" }),
     ],
 };
 ```
