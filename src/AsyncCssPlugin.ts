@@ -1,9 +1,8 @@
 import HtmlWebpackPlugin from "html-webpack-plugin";
-import type { Compiler } from "webpack";
+import type { Compilation, Compiler } from "webpack";
 
-import { MessageType, Options } from "./Options";
+import type { MessageType, Options } from "./Options";
 
-// tslint:disable-next-line: no-default-export
 class AsyncCssPlugin {
     public constructor(options: Options = {}) {
         Object.assign(this.options, options);
@@ -35,9 +34,8 @@ class AsyncCssPlugin {
         }
     }
 
-    private checkHook(compilation: any) {
-        if (HtmlWebpackPlugin && HtmlWebpackPlugin.getHooks) {
-            // tslint:disable-next-line: no-unsafe-any
+    private checkHook(compilation: Compilation) {
+        if (HtmlWebpackPlugin?.getHooks) {
             const hooks = HtmlWebpackPlugin.getHooks(compilation);
             hooks.alterAssetTags.tap(AsyncCssPlugin.name, (data) => this.checkTags(data, data.assetTags.styles));
         } else {
@@ -59,10 +57,11 @@ class AsyncCssPlugin {
     }
 
     private checkTags<TOutput extends { readonly outputName: string }>(
-        output: TOutput, tags: HtmlWebpackPlugin.HtmlTagObject[],
+        output: TOutput,
+        tags: HtmlWebpackPlugin.HtmlTagObject[],
     ) {
         for (const { tagName, attributes } of tags) {
-            if ((tagName === "link") && (attributes.rel === "stylesheet")) {
+            if ((tagName === "link") && (attributes["rel"] === "stylesheet")) {
                 this.processTag(output.outputName, attributes);
             }
         }
@@ -70,15 +69,14 @@ class AsyncCssPlugin {
         return output;
     }
 
-    // tslint:disable-next-line: prefer-function-over-method
     private processTag(outputName: string, attributes: HtmlWebpackPlugin.HtmlTagObject["attributes"]) {
-        if (attributes.media) {
-            this.log("warn", `The link for ${attributes.href} already has a media attribute, will not modify.`);
+        if (attributes["media"]) {
+            this.log("warn", `The link for ${attributes["href"]} already has a media attribute, will not modify.`);
         } else {
-            attributes.media = "print";
-            attributes.onload = attributes.onload ? `${attributes.onload};` : "";
-            attributes.onload += "this.media='all'";
-            this.log("info", `${outputName}: Modified link to ${attributes.href}.`);
+            attributes["media"] = "print";
+            attributes["onload"] = attributes["onload"] ? `${attributes["onload"]};` : "";
+            attributes["onload"] += "this.media='all'";
+            this.log("info", `${outputName}: Modified link to ${attributes["href"]}.`);
         }
     }
 }

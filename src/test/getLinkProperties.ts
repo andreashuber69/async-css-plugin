@@ -1,4 +1,3 @@
-// tslint:disable: file-name-casing
 import { readFileSync } from "fs";
 import { JSDOM } from "jsdom";
 
