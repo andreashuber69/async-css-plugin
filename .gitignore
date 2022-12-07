@@ -1,5 +1,4 @@
 /dist/
 /node_modules/
 /src/test/vue/dist/
-/src/test/vue/node_modules/
 /src/test/webpack/dist/
