@@ -1,9 +1,9 @@
 {
   "recommendations": [
+    "christian-kohler.npm-intellisense",
     "davidanson.vscode-markdownlint",
-    "eamodio.gitlens",
-    "eg2.vscode-npm-script",
     "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
     "streetsidesoftware.code-spell-checker",
     "vector-of-bool.gitflow"
   ]
