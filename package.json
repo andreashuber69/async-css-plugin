@@ -30,12 +30,12 @@
   ],
   "scripts": {
     "prelint": "cspell '**/*.*' && markdownlint *.md",
-    "lint": "eslint src --ext .js,.ts",
+    "lint": "eslint ./src --ext .js,.ts",
     "prebuild": "npm run lint",
     "build": "tsc",
-    "test": "tsc && export NODE_OPTIONS=--openssl-legacy-provider && ts-mocha src/test/**/*.spec.ts",
-    "ci": "npm run build",
-    "postci": "ts-mocha src/test/**/*.spec.ts"
+    "pretest-no-coverage": "npm run build",
+    "test-no-coverage": "ts-mocha ./src/test/**/*.spec.ts",
+    "ci": "npm run test-no-coverage"
   },
   "devDependencies": {
     "@andreashuber69/eslint-config": "^1.0.4",
