@@ -56,8 +56,8 @@ class AsyncCssPlugin {
         }
     }
 
-    private checkTags<TOutput extends { readonly outputName: string }>(
-        output: TOutput,
+    private checkTags<Output extends { readonly outputName: string }>(
+        output: Output,
         tags: HtmlWebpackPlugin.HtmlTagObject[],
     ) {
         for (const { tagName, attributes } of tags) {
