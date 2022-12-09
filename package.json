@@ -36,8 +36,8 @@
     "build": "tsc",
     "pretest-no-coverage": "npm run build",
     "test-no-coverage": "ts-mocha ./src/test/**/*.spec.ts",
-    "test": "c8 --include 'dist/*.js' --reporter=html --reporter=text --all npm run test-no-coverage",
-    "show-coverage": "lite-server --baseDir=coverage",
+    "test": "c8 --include 'dist/*.js' --reporter=text --reporter=lcov --all npm run test-no-coverage",
+    "show-coverage": "lite-server --baseDir=coverage/lcov-report",
     "ci": "npm run test"
   },
   "devDependencies": {
