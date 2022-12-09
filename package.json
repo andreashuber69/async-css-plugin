@@ -26,7 +26,8 @@
   "main": "dist/AsyncCssPlugin.js",
   "files": [
     "/dist/",
-    "!/dist/test/"
+    "!/dist/test/",
+    "!/dist/*.map"
   ],
   "scripts": {
     "prelint": "cspell '**/*.*' && markdownlint *.md",
@@ -38,12 +39,12 @@
     "ci": "npm run test-no-coverage"
   },
   "devDependencies": {
-    "@andreashuber69/eslint-config": "^1.0.6",
+    "@andreashuber69/eslint-config": "^1.0.9",
     "@tsconfig/node-lts-strictest": "^18.12.1",
     "@types/chai": "^4.3.4",
     "@types/jsdom": "^20.0.1",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.11.11",
+    "@types/node": "^18.11.12",
     "@typescript-eslint/eslint-plugin": "^5.46.0",
     "@typescript-eslint/parser": "^5.46.0",
     "@vue/cli-service": "^5.0.8",
