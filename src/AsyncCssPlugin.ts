@@ -10,7 +10,7 @@ class AsyncCssPlugin {
 
     public apply({ hooks }: Compiler): void {
         if (!hooks) {
-            this.log("error", "hooks is undefined. Is the version of your webpack package too old?");
+            throw new Error("Compiler.hooks is undefined. Is your webpack package version too old?");
         }
 
         hooks.compilation.tap(AsyncCssPlugin.name, (compilation) => this.checkHook(compilation));
@@ -37,10 +37,15 @@ class AsyncCssPlugin {
     private checkHook(compilation: Compilation) {
         if (HtmlWebpackPlugin?.getHooks) {
             const hooks = HtmlWebpackPlugin.getHooks(compilation);
-            hooks.alterAssetTags.tap(AsyncCssPlugin.name, (data) => this.checkTags(data, data.assetTags.styles));
-        } else {
-            this.log("error", "Cannot find hook. Is your configuration missing the HtmlWebpackPlugin?");
+
+            if (hooks?.alterAssetTags?.tap) {
+                hooks.alterAssetTags.tap(AsyncCssPlugin.name, (data) => this.checkTags(data, data.assetTags.styles));
+
+                return;
+            }
         }
+
+        throw new Error("Cannot get alterAssetTags hook. Is your webpack configuration missing the HtmlWebpackPlugin?");
     }
 
     private doLog(messageType: MessageType) {
