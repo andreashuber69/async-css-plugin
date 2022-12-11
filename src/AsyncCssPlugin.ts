@@ -8,12 +8,14 @@ class AsyncCssPlugin {
         Object.assign(this.options, options);
     }
 
-    public apply({ hooks }: Compiler): void {
-        if (!hooks) {
-            throw new Error("Compiler.hooks is undefined. Is your webpack package version too old?");
+    public apply(compiler: Partial<Compiler> | null | undefined): void {
+        const compilation = compiler?.hooks?.compilation;
+
+        if (!compilation?.tap) {
+            throw new Error("compiler?.hooks?.compilation?.tap is undefined. Is your webpack package version too old?");
         }
 
-        hooks.compilation.tap(AsyncCssPlugin.name, (compilation) => this.checkHook(compilation));
+        compilation.tap(AsyncCssPlugin.name, (c) => this.checkHook(c));
     }
 
     private static assertUnreachable(value: never): never {
