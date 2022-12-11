@@ -23,16 +23,10 @@ class AsyncCssPlugin {
     }
 
     private readonly options: Required<Options> = { logLevel: "warn" };
-    private logged = false;
 
     private log(messageType: MessageType, message: string) {
         if (this.doLog(messageType)) {
-            if (!this.logged) {
-                this.logged = true;
-                console.log(); // Make sure we start our log on a new line
-            }
-
-            console[messageType](`${AsyncCssPlugin.name}[${messageType}]: ${message}`);
+            console[messageType](`\n${AsyncCssPlugin.name}[${messageType}]: ${message}`);
         }
     }
 
