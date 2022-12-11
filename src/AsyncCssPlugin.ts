@@ -4,8 +4,17 @@ import type { Compilation, Compiler } from "webpack";
 import type { MessageType, Options } from "./Options";
 
 class AsyncCssPlugin {
-    public constructor(options: Options = {}) {
-        Object.assign(this.options, options);
+    public constructor(options?: Options) {
+        this.options = { logLevel: "warn", ...options };
+
+        switch (this.options.logLevel) {
+            case "info":
+            case "warn":
+            case "error":
+                break;
+            default:
+                throw new Error(`options.logLevel is invalid: ${this.options.logLevel}.`);
+        }
     }
 
     public apply(compiler: Partial<Compiler> | null | undefined): void {
@@ -18,11 +27,7 @@ class AsyncCssPlugin {
         compilation.tap(AsyncCssPlugin.name, (c) => this.checkHook(c));
     }
 
-    private static assertUnreachable(value: never): never {
-        throw new Error(value);
-    }
-
-    private readonly options: Required<Options> = { logLevel: "warn" };
+    private readonly options: Required<Options>;
 
     private log(messageType: MessageType, message: string) {
         if (this.doLog(messageType)) {
@@ -46,10 +51,8 @@ class AsyncCssPlugin {
                 return true;
             case "warn":
                 return messageType !== "info";
-            case "error":
-                return messageType === "error";
             default:
-                return AsyncCssPlugin.assertUnreachable(this.options.logLevel);
+                return messageType === "error";
         }
     }
 
