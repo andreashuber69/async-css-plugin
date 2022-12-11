@@ -5,15 +5,15 @@ import type { MessageType, Options } from "./Options";
 
 class AsyncCssPlugin {
     public constructor(options?: Options) {
-        this.options = { logLevel: "warn", ...options };
+        ({ logLevel: this.logLevel } = { logLevel: "warn", ...options });
 
-        switch (this.options.logLevel) {
+        switch (this.logLevel) {
             case "info":
             case "warn":
             case "error":
                 break;
             default:
-                throw new Error(`options.logLevel is invalid: ${this.options.logLevel}.`);
+                throw new Error(`options.logLevel is invalid: ${this.logLevel}.`);
         }
     }
 
@@ -27,7 +27,7 @@ class AsyncCssPlugin {
         compilation.tap(AsyncCssPlugin.name, (c) => this.checkHook(c));
     }
 
-    private readonly options: Required<Options>;
+    private readonly logLevel: MessageType;
 
     private log(messageType: MessageType, message: string) {
         if (this.doLog(messageType)) {
@@ -46,7 +46,7 @@ class AsyncCssPlugin {
     }
 
     private doLog(messageType: MessageType) {
-        switch (this.options.logLevel) {
+        switch (this.logLevel) {
             case "info":
                 return true;
             case "warn":
