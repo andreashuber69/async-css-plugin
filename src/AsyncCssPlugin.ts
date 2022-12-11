@@ -35,17 +35,13 @@ class AsyncCssPlugin {
     }
 
     private checkHook(compilation: Compilation) {
-        if (HtmlWebpackPlugin?.getHooks) {
-            const hooks = HtmlWebpackPlugin.getHooks(compilation);
+        const alterAssetTags = HtmlWebpackPlugin?.getHooks?.(compilation)?.alterAssetTags;
 
-            if (hooks?.alterAssetTags?.tap) {
-                hooks.alterAssetTags.tap(AsyncCssPlugin.name, (data) => this.checkTags(data, data.assetTags.styles));
-
-                return;
-            }
+        if (!alterAssetTags) {
+            throw new Error("Cannot get alterAssetTags hook. Is your config missing the HtmlWebpackPlugin?");
         }
 
-        throw new Error("Cannot get alterAssetTags hook. Is your webpack configuration missing the HtmlWebpackPlugin?");
+        alterAssetTags.tap(AsyncCssPlugin.name, (data) => this.checkTags(data, data.assetTags.styles));
     }
 
     private doLog(messageType: MessageType) {
