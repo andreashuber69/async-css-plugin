@@ -27,13 +27,11 @@ class AsyncCssPlugin {
         compilation.tap(AsyncCssPlugin.name, (c) => this.checkHook(c));
     }
 
-    private readonly logLevel: MessageType;
-
-    private log(messageType: MessageType, message: string) {
-        if (this.doLog(messageType)) {
-            console[messageType](`\n${AsyncCssPlugin.name}[${messageType}]: ${message}`);
-        }
+    private static log(messageType: MessageType, message: string) {
+        console[messageType](`\n${AsyncCssPlugin.name}[${messageType}]: ${message}`);
     }
+
+    private readonly logLevel: MessageType;
 
     private checkHook(compilation: Compilation) {
         const alterAssetTags = HtmlWebpackPlugin?.getHooks?.(compilation)?.alterAssetTags;
@@ -43,17 +41,6 @@ class AsyncCssPlugin {
         }
 
         alterAssetTags.tap(AsyncCssPlugin.name, (data) => this.checkTags(data, data?.assetTags?.styles));
-    }
-
-    private doLog(messageType: MessageType) {
-        switch (this.logLevel) {
-            case "info":
-                return true;
-            case "warn":
-                return messageType !== "info";
-            default:
-                return messageType === "error";
-        }
     }
 
     private checkTags<Output extends { readonly outputName: string }>(
@@ -71,14 +58,16 @@ class AsyncCssPlugin {
 
     private processTag(outputName: string, attributes: HtmlWebpackPlugin.HtmlTagObject["attributes"]) {
         if (attributes["media"]) {
-            this.log("warn", `The link for ${attributes["href"]} already has a media attribute, will not modify.`);
+            const message = `The link for ${attributes["href"]} already has a media attribute, will not modify.`;
+            void ((this.logLevel !== "error") && AsyncCssPlugin.log("warn", message));
         } else {
             Object.assign(attributes, {
                 media: "print",
                 onload: [attributes["onload"], "this.media='all'"].filter((e) => Boolean(e)).join(";"),
             });
 
-            this.log("info", `${outputName}: Modified link to ${attributes["href"]}.`);
+            const message = `${outputName}: Modified link to ${attributes["href"]}.`;
+            void ((this.logLevel === "info") && AsyncCssPlugin.log("info", message));
         }
     }
 }
