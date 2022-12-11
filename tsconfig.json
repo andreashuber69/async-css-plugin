@@ -4,7 +4,8 @@
     "checkJs": false,
     "declaration": true,
     "outDir": "dist",
-    "sourceMap": true
+    "sourceMap": true,
+    "target": "ES2019"
   },
   "include": [
     "src/**/*"
