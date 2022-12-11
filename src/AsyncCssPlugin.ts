@@ -74,9 +74,11 @@ class AsyncCssPlugin {
         if (attributes["media"]) {
             this.log("warn", `The link for ${attributes["href"]} already has a media attribute, will not modify.`);
         } else {
-            attributes["media"] = "print";
-            attributes["onload"] = attributes["onload"] ? `${attributes["onload"]};` : "";
-            attributes["onload"] += "this.media='all'";
+            Object.assign(attributes, {
+                media: "print",
+                onload: [attributes["onload"], "this.media='all'"].filter((e) => Boolean(e)).join(";"),
+            });
+
             this.log("info", `${outputName}: Modified link to ${attributes["href"]}.`);
         }
     }
