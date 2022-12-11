@@ -62,7 +62,7 @@ class AsyncCssPlugin {
         tags: HtmlWebpackPlugin.HtmlTagObject[],
     ) {
         for (const { tagName, attributes } of tags) {
-            if ((tagName === "link") && (attributes["rel"] === "stylesheet")) {
+            if ((tagName === "link") && (attributes?.["rel"] === "stylesheet")) {
                 this.processTag(output.outputName, attributes);
             }
         }
