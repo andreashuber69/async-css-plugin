@@ -30,14 +30,14 @@
     "!/dist/*.map"
   ],
   "scripts": {
-    "prelint": "cspell '**/*.*' && markdownlint *.md",
-    "lint": "eslint ./src --ext .js,.ts",
+    "prelint": "cspell '**/*.*' && markdownlint '*.md'",
+    "lint": "eslint './src' --ext .js,.ts",
     "prebuild": "npm run lint",
     "build": "tsc",
     "pretest-no-coverage": "npm run build",
-    "test-no-coverage": "ts-mocha ./src/test/**/*.spec.ts",
-    "test": "c8 --include 'dist/*.js' --reporter=text --reporter=lcov --all npm run test-no-coverage",
-    "show-coverage": "lite-server --baseDir=coverage/lcov-report",
+    "test-no-coverage": "ts-mocha './src/test/**/*.spec.ts'",
+    "test": "c8 --include 'dist/AsyncCssPlugin.js' --reporter=text --reporter=lcov --all npm run test-no-coverage",
+    "show-coverage": "lite-server --baseDir='coverage/lcov-report'",
     "ci": "npm run test"
   },
   "devDependencies": {
