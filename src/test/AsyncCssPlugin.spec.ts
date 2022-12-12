@@ -1,5 +1,7 @@
 import { expect } from "chai";
 
+// We need to use plain old require here, so that the compiled output is only loaded during the test run. Otherwise, tsc
+// will complain that it cannot overwrite an input file.
 // eslint-disable-next-line max-len
 // eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-assignment, import/no-commonjs, @typescript-eslint/no-require-imports
 const AsyncCssPlugin = require("../../dist/AsyncCssPlugin");
