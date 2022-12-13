@@ -16,6 +16,7 @@ describe("AsyncCssPlugin", () => {
             );
         });
     });
+
     describe("apply", () => {
         it("should throw for invalid compiler", () => {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
