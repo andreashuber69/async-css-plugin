@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "prelint": "cspell '**/*.*' && markdownlint '*.md'",
-    "lint": "eslint './src' --ext .js,.ts",
+    "lint": "eslint --ext .js,.ts './src'",
     "prebuild": "npm run lint",
     "build": "tsc",
     "pretest-no-coverage": "npm run build",
@@ -60,7 +60,6 @@
     "mini-css-extract-plugin": "^2.7.2",
     "mocha": "^10.2.0",
     "ts-mocha": "^10.0.0",
-    "ts-node": "^10.9.1",
     "typescript": "^4.9.4",
     "vue": "^3.2.45",
     "webpack": "^5.75.0",
