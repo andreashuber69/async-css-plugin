@@ -59,7 +59,7 @@ class AsyncCssPlugin {
     private processTag(outputName: string, attributes: HtmlWebpackPlugin.HtmlTagObject["attributes"]) {
         if (attributes["media"]) {
             const message = `The link for ${attributes["href"]} already has a media attribute, will not modify.`;
-            void ((this.logLevel !== "error") && AsyncCssPlugin.log("warn", message));
+            (this.logLevel !== "error") && AsyncCssPlugin.log("warn", message);
         } else {
             Object.assign(attributes, {
                 media: "print",
@@ -67,7 +67,7 @@ class AsyncCssPlugin {
             });
 
             const message = `${outputName}: Modified link to ${attributes["href"]}.`;
-            void ((this.logLevel === "info") && AsyncCssPlugin.log("info", message));
+            (this.logLevel === "info") && AsyncCssPlugin.log("info", message);
         }
     }
 }
