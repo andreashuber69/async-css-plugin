@@ -1,4 +1,4 @@
-import { readFileSync } from "fs";
+import { readFileSync } from "node:fs";
 import { JSDOM } from "jsdom";
 
 const findElement = <T extends { readonly rel: string }>(collection: HTMLCollection, ctor: new () => T) => {

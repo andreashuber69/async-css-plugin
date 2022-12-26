@@ -1,5 +1,5 @@
-import { exec } from "child_process";
-import { rmSync } from "fs";
+import { exec } from "node:child_process";
+import { rmSync } from "node:fs";
 
 import { expect } from "chai";
 
