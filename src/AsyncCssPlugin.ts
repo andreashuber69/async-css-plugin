@@ -63,7 +63,7 @@ class AsyncCssPlugin {
         } else {
             Object.assign(attributes, {
                 media: "print",
-                onload: [attributes["onload"], "this.media='all'"].filter((e) => Boolean(e)).join(";"),
+                onload: [attributes["onload"], "this.media='all'"].filter(Boolean).join(";"),
             });
 
             const message = `${outputName}: Modified link to ${attributes["href"]}.`;
