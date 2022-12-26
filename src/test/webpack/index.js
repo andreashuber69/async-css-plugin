@@ -9,4 +9,4 @@ const component = () => {
     return element;
 };
 
-document.body.appendChild(component());
+document.body.append(component());
