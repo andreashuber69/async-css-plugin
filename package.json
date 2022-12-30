@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "prelint": "cspell '**/*.*' && markdownlint '*.md'",
-    "lint": "eslint --ext .js,.ts './src'",
+    "lint": "eslint --ext .js,.ts --report-unused-disable-directives './src'",
     "prebuild": "npm run lint",
     "build": "tsc",
     "pretest-no-coverage": "npm run build",
