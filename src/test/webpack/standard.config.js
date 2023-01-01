@@ -1,3 +1,4 @@
+// https://github.com/andreashuber69/async-css-plugin#--
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 

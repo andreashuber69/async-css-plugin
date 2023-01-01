@@ -1,3 +1,4 @@
+// https://github.com/andreashuber69/async-css-plugin#--
 import { readFileSync } from "node:fs";
 import { JSDOM } from "jsdom";
 

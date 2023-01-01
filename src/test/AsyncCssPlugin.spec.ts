@@ -1,3 +1,4 @@
+// https://github.com/andreashuber69/async-css-plugin#--
 import { expect } from "chai";
 
 // We need to use plain old require here, so that the compiled output is only loaded during the test run. Otherwise, tsc

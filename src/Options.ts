@@ -1,3 +1,4 @@
+// https://github.com/andreashuber69/async-css-plugin#--
 export type MessageType = "error" | "info" | "warn";
 
 export interface Options {

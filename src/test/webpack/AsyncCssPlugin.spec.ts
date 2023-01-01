@@ -1,3 +1,4 @@
+// https://github.com/andreashuber69/async-css-plugin#--
 import { rmSync } from "node:fs";
 import { join } from "node:path";
 
