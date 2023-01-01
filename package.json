@@ -41,7 +41,7 @@
     "ci": "npm run test"
   },
   "devDependencies": {
-    "@andreashuber69/eslint-config": "^1.0.20",
+    "@andreashuber69/eslint-config": "^1.0.22",
     "@tsconfig/node-lts-strictest": "^18.12.1",
     "@types/chai": "^4.3.4",
     "@types/jsdom": "^20.0.1",
@@ -50,7 +50,7 @@
     "c8": "^7.12.0",
     "chai": "^4.3.7",
     "codeclimate-test-reporter": "^0.5.1",
-    "cspell": "^6.18.0",
+    "cspell": "^6.18.1",
     "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.0",
     "jsdom": "^20.0.3",
