@@ -1,5 +1,7 @@
+os: linux
+dist: xenial
 language: node_js
-nodejs:
+node_js:
 - 16
 
 branches:
