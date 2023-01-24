@@ -1,4 +1,4 @@
-// https://github.com/andreashuber69/async-css-plugin#--
+// https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin
 // eslint-disable-next-line import/no-unassigned-import
 import "./style.css";
 

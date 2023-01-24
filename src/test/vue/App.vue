@@ -1,4 +1,4 @@
-<!-- https://github.com/andreashuber69/async-css-plugin#-- -->
+<!-- https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin -->
 <template>
 <h1 class="hello">Hello</h1>
 </template>

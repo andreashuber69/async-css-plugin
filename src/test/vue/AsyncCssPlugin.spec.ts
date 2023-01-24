@@ -1,4 +1,4 @@
-// https://github.com/andreashuber69/async-css-plugin#--
+// https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin
 import { exec } from "node:child_process";
 import { rmSync } from "node:fs";
 
