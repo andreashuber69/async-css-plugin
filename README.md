@@ -1,5 +1,6 @@
 <h1 align="center">
-  <img width="128" src="https://raw.githubusercontent.com/andreashuber69/async-css-plugin/master/doc/icon.svg?sanitize=true">
+  <img width="128" src="https://raw.githubusercontent.com/andreashuber69/async-css-plugin/master/doc/icon.svg?sanitize=true"><br>
+  async-css-plugin
 </h1>
 <p align="center">
   <a href="https://www.npmjs.com/package/async-css-plugin">
@@ -27,8 +28,6 @@
     <img src="https://img.shields.io/github/license/andreashuber69/async-css-plugin.svg" alt="License">
   </a>
 </p>
-
-<h1 align="center">Async CSS Plugin</h1>
 
 Browsers load CSS files (stylesheets) synchronously such that rendering of a page is delayed until all linked
 stylesheets have been downloaded. This behavior is typically desired because unstyled HTML is not something you want
