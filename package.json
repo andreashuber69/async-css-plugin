@@ -6,7 +6,7 @@
     "async",
     "css",
     "webpack",
-    "plugin"
+    "webpack-plugin"
   ],
   "homepage": "https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin",
   "repository": {
