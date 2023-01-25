@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img width="128" src="https://raw.githubusercontent.com/andreashuber69/async-css-plugin/master/doc/icon.svg?sanitize=true"><br>
+  <img width="128" src="https://raw.githubusercontent.com/andreashuber69/async-css-plugin/develop/doc/icon.svg?sanitize=true"><br>
   async-css-plugin
 </h1>
 <p align="center">
@@ -24,7 +24,7 @@
   <a href="https://codeclimate.com/github/andreashuber69/async-css-plugin/test_coverage">
     <img src="https://api.codeclimate.com/v1/badges/b071b5fbd1aaf7aafbd6/test_coverage" alt="Code Climate Test Coverage">
   </a>
-  <a href="https://github.com/andreashuber69/async-css-plugin/blob/master/LICENSE">
+  <a href="https://github.com/andreashuber69/async-css-plugin/blob/develop/LICENSE">
     <img src="https://img.shields.io/github/license/andreashuber69/async-css-plugin.svg" alt="License">
   </a>
 </p>
