@@ -37,7 +37,7 @@
     "pretest-no-coverage": "npm run build",
     "test-no-coverage": "ts-mocha './src/test/**/*.spec.ts'",
     "test": "c8 --include 'dist/AsyncCssPlugin.js' --reporter=text --reporter=lcov --all npm run test-no-coverage",
-    "show-coverage": "lite-server --baseDir='coverage/lcov-report'",
+    "show-coverage": "alive-server 'coverage/lcov-report'",
     "ci": "npm run test"
   },
   "devDependencies": {
@@ -47,13 +47,13 @@
     "@types/jsdom": "^20.0.1",
     "@types/mocha": "^10.0.1",
     "@vue/cli-service": "^5.0.8",
+    "alive-server": "^1.2.9",
     "c8": "^7.12.0",
     "chai": "^4.3.7",
     "cspell": "^6.19.2",
     "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.0",
     "jsdom": "^21.1.0",
-    "lite-server": "^2.6.1",
     "markdownlint-cli": "^0.33.0",
     "mini-css-extract-plugin": "^2.7.2",
     "mocha": "^10.2.0",
