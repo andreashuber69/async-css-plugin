@@ -21,6 +21,9 @@
   <a href="https://codeclimate.com/github/andreashuber69/async-css-plugin/test_coverage">
     <img src="https://api.codeclimate.com/v1/badges/b071b5fbd1aaf7aafbd6/test_coverage" alt="Code Climate Test Coverage">
   </a>
+  <a href="https://coveralls.io/github/andreashuber69/async-css-plugin?branch=develop">
+    <img src="https://coveralls.io/repos/github/andreashuber69/async-css-plugin/badge.svg?branch=develop" alt="Coveralls">
+  </a>
   <a href="https://github.com/andreashuber69/async-css-plugin/blob/develop/LICENSE">
     <img src="https://img.shields.io/github/license/andreashuber69/async-css-plugin.svg" alt="License">
   </a>
