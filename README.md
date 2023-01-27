@@ -15,9 +15,6 @@
   <a href="https://github.com/andreashuber69/async-css-plugin/issues">
     <img src="https://img.shields.io/github/issues-raw/andreashuber69/async-css-plugin.svg" alt="Issues">
   </a>
-  <a href="https://codebeat.co/projects/github-com-andreashuber69-async-css-plugin-develop">
-    <img src="https://codebeat.co/badges/8c3c1b09-c029-483a-a812-72e3d9583306" alt="Codebeat Score">
-  </a>
   <a href="https://codeclimate.com/github/andreashuber69/async-css-plugin/maintainability">
     <img src="https://api.codeclimate.com/v1/badges/b071b5fbd1aaf7aafbd6/maintainability" alt="Code Climate Maintainability">
   </a>
