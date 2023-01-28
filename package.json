@@ -1,14 +1,14 @@
 {
   "name": "async-css-plugin",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Minimal webpack plugin that transforms links to css files such that they are loaded asynchronously.",
   "keywords": [
     "async",
     "css",
     "webpack",
-    "plugin"
+    "webpack-plugin"
   ],
-  "homepage": "https://github.com/andreashuber69/async-css-plugin/blob/master/README.md#--",
+  "homepage": "https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin",
   "repository": {
     "type": "git",
     "url": "https://github.com/andreashuber69/async-css-plugin.git"
@@ -26,46 +26,44 @@
   "main": "dist/AsyncCssPlugin.js",
   "files": [
     "/dist/",
-    "!/dist/test/"
+    "!/dist/test/",
+    "!/dist/*.map",
+    "/*.md"
   ],
   "scripts": {
-    "prelint": "cspell '**/*.*' && markdownlint *.md",
-    "lint": "eslint src --ext .js,.ts",
-    "prebuild": "npm run lint",
+    "prelint": "cspell '**/*.*' && markdownlint '*.md'",
+    "lint": "eslint --ext .js,.ts --report-unused-disable-directives './src'",
     "build": "tsc",
-    "test": "tsc && export NODE_OPTIONS=--openssl-legacy-provider && ts-mocha src/test/**/*.spec.ts",
-    "ci": "npm run build",
-    "postci": "ts-mocha src/test/**/*.spec.ts"
+    "pretest-no-coverage": "npm run build",
+    "test-no-coverage": "ts-mocha './src/test/**/*.spec.ts'",
+    "test": "c8 --include 'dist/AsyncCssPlugin.js' --reporter=text --reporter=lcov --all npm run test-no-coverage",
+    "show-coverage": "alive-server 'coverage/lcov-report'",
+    "preci": "npm run lint",
+    "ci": "npm test"
   },
   "devDependencies": {
-    "@andreashuber69/eslint-config": "^1.0.2",
+    "@andreashuber69/eslint-config": "^1.1.5",
     "@tsconfig/node-lts-strictest": "^18.12.1",
     "@types/chai": "^4.3.4",
     "@types/jsdom": "^20.0.1",
-    "@types/mocha": "^10.0.0",
-    "@types/node": "^18.11.9",
-    "@typescript-eslint/eslint-plugin": "^5.43.0",
-    "@typescript-eslint/parser": "^5.43.0",
+    "@types/mocha": "^10.0.1",
     "@vue/cli-service": "^5.0.8",
+    "alive-server": "^1.2.9",
+    "c8": "^7.12.0",
     "chai": "^4.3.7",
-    "cspell": "^6.14.3",
-    "css-loader": "^6.7.2",
-    "eslint": "^8.28.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsdoc": "^39.6.2",
-    "eslint-plugin-no-null": "^1.0.2",
-    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "coveralls": "^3.1.1",
+    "cspell": "^6.19.2",
+    "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.0",
-    "jsdom": "^20.0.3",
-    "markdownlint-cli": "^0.32.2",
-    "mini-css-extract-plugin": "^2.7.0",
-    "mocha": "^10.1.0",
+    "jsdom": "^21.1.0",
+    "markdownlint-cli": "^0.33.0",
+    "mini-css-extract-plugin": "^2.7.2",
+    "mocha": "^10.2.0",
     "ts-mocha": "^10.0.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.3",
+    "typescript": "^4.9.4",
     "vue": "^3.2.45",
     "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.0"
+    "webpack-cli": "^5.0.1"
   },
   "peerDependencies": {
     "html-webpack-plugin": ">=3.2.0",

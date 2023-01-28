@@ -1,5 +1,6 @@
-import { rmSync } from "fs";
-import { join } from "path";
+// https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin
+import { rmSync } from "node:fs";
+import { join } from "node:path";
 
 import { expect } from "chai";
 import type { Configuration } from "webpack";

@@ -1,3 +1,4 @@
+// https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin
 // eslint-disable-next-line import/no-unassigned-import
 import "./style.css";
 
@@ -9,4 +10,4 @@ const component = () => {
     return element;
 };
 
-document.body.appendChild(component());
+document.body.append(component());

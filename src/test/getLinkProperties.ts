@@ -1,4 +1,5 @@
-import { readFileSync } from "fs";
+// https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin
+import { readFileSync } from "node:fs";
 import { JSDOM } from "jsdom";
 
 const findElement = <T extends { readonly rel: string }>(collection: HTMLCollection, ctor: new () => T) => {
