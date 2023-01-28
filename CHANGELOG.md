@@ -1,1 +1,3 @@
-## [Changelog](https://github.com/andreashuber69/async-css-plugin/releases)
+## Changelog
+
+See [GitHub Releases](https://github.com/andreashuber69/async-css-plugin/releases).
