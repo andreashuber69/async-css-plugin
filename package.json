@@ -5,6 +5,7 @@
   "keywords": [
     "async",
     "css",
+    "stylesheet",
     "webpack",
     "webpack-plugin"
   ],
