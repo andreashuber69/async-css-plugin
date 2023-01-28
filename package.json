@@ -33,13 +33,13 @@
   "scripts": {
     "prelint": "cspell '**/*.*' && markdownlint '*.md'",
     "lint": "eslint --ext .js,.ts --report-unused-disable-directives './src'",
-    "prebuild": "npm run lint",
     "build": "tsc",
     "pretest-no-coverage": "npm run build",
     "test-no-coverage": "ts-mocha './src/test/**/*.spec.ts'",
     "test": "c8 --include 'dist/AsyncCssPlugin.js' --reporter=text --reporter=lcov --all npm run test-no-coverage",
     "show-coverage": "alive-server 'coverage/lcov-report'",
-    "ci": "npm run test"
+    "preci": "npm run lint",
+    "ci": "npm test"
   },
   "devDependencies": {
     "@andreashuber69/eslint-config": "^1.1.4",
