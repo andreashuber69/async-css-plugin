@@ -1,2 +1,4 @@
 /.eslintrc.cjs
-/dist/
+/**/*.config.js
+/**/*.css
+/**/*.vue

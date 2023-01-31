@@ -27,17 +27,17 @@
   "main": "dist/AsyncCssPlugin.js",
   "files": [
     "/dist/",
-    "!/dist/test/",
-    "!/dist/*.map",
+    "!/dist/test/**",
+    "!/**/*.map",
     "/*.md"
   ],
   "scripts": {
-    "prelint": "cspell '**/*.*' && markdownlint '*.md'",
-    "lint": "eslint --ext .js,.ts --report-unused-disable-directives './src'",
+    "prelint": "cspell '**' && markdownlint '**/*.md'",
+    "lint": "eslint --report-unused-disable-directives 'src/**'",
     "build": "tsc",
     "pretest-no-coverage": "npm run build",
-    "test-no-coverage": "ts-mocha './src/test/**/*.spec.ts'",
-    "test": "c8 --include 'dist/AsyncCssPlugin.js' --reporter=text --reporter=lcov --all npm run test-no-coverage",
+    "test-no-coverage": "ts-mocha 'src/test/**/*.spec.ts'",
+    "test": "c8 --exclude 'src/test/**' --reporter=text --reporter=lcov npm run test-no-coverage",
     "show-coverage": "alive-server 'coverage/lcov-report'",
     "preci": "npm run lint",
     "ci": "npm test"
