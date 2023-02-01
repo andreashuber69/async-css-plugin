@@ -9,6 +9,7 @@
     "typescript"
   ],
   "ignorePaths": [
+    "/cc-test-reporter",
     "/coverage/**",
     "/dist/**",
     "/package.json"
