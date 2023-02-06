@@ -120,6 +120,38 @@ describe("AsyncCssPlugin", () => {
     });
 
     describe("apply", () => {
+        it(
+            "should do nothing when assetTags field is missing",
+            createMochaFunc(false, (i) => (i.assetTags = undefined as unknown as AssetTagsInfo["assetTags"])),
+        );
+        it(
+            "should do nothing when assetTags.styles field is missing",
+            createMochaFunc(
+                false,
+                (i) => (i.assetTags.styles = undefined as unknown as AssetTagsInfo["assetTags"]["styles"]),
+            ),
+        );
+        it(
+            "should do nothing when assetTags.styles field is missing",
+            createMochaFunc(
+                false,
+                (i) => (i.assetTags.styles = undefined as unknown as AssetTagsInfo["assetTags"]["styles"]),
+            ),
+        );
+        it(
+            "should do nothing when assetTags.styles[0].attributes field is missing",
+            createMochaFunc(
+                false,
+                (i) => {
+                    const { assetTags: { styles } } = i;
+
+                    if (styles[0]) {
+                        styles[0].attributes =
+                            undefined as unknown as AssetTagsInfo["assetTags"]["styles"][0]["attributes"];
+                    }
+                },
+            ),
+        );
         it("should modify a link without the media attribute", createMochaFunc(true, (i) => {
             const { styles } = i.assetTags;
 
