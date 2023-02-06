@@ -24,29 +24,37 @@ const createFakeCompiler = () => {
 
 type AssetTagsInfo = Parameters<HtmlWebpackPlugin.Hooks["alterAssetTags"]["promise"]>[0];
 
-const createStyleTags = (mediaAttribute?: "media", tagName?: "meta" | "script"): AssetTagsInfo => ({
-    assetTags: {
-        scripts: new Array<HtmlWebpackPlugin.HtmlTagObject>(),
-        styles: [
-            {
-                attributes: {
-                    href: "whatever.css",
-                    rel: "stylesheet",
-                    media: mediaAttribute,
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const createStyleTags = (modifyInfo: (info: AssetTagsInfo) => void = () => {}): AssetTagsInfo => {
+    const result = {
+        assetTags: {
+            scripts: new Array<HtmlWebpackPlugin.HtmlTagObject>(),
+            styles: [
+                {
+                    attributes: {
+                        href: "whatever.css",
+                        rel: "stylesheet",
+                        media: "media",
+                    },
+                    tagName: "link",
+                    voidTag: false,
+                    meta: {},
                 },
-                tagName: tagName ?? "link",
-                voidTag: false,
-                meta: {},
-            },
-        ],
-        meta: new Array<HtmlWebpackPlugin.HtmlTagObject>(),
-    },
-    publicPath: "",
-    outputName: "someOutput.html",
-    plugin: new HtmlWebpackPlugin(),
-});
+            ],
+            meta: new Array<HtmlWebpackPlugin.HtmlTagObject>(),
+        },
+        publicPath: "",
+        outputName: "someOutput.html",
+        plugin: new HtmlWebpackPlugin(),
+    };
 
-const createMochaFunc = (mediaAttribute?: "media"): Mocha.AsyncFunc =>
+    modifyInfo(result);
+
+    return result;
+};
+
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const createMochaFunc = (shouldModify: boolean, modifyInfo: (info: AssetTagsInfo) => void = () => {}) =>
     async () => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
         const sut = new AsyncCssPlugin({ logLevel: "info" });
@@ -59,13 +67,13 @@ const createMochaFunc = (mediaAttribute?: "media"): Mocha.AsyncFunc =>
         // Since compilation is just used as key in a WeakMap, we can use an empty object.
         const compilation = {} as unknown as Compilation;
         taps[0]?.(compilation);
-        const styleTags = createStyleTags(mediaAttribute);
+        const styleTags = createStyleTags(modifyInfo);
         await HtmlWebpackPlugin.getHooks(compilation).alterAssetTags.promise(styleTags);
 
-        if (mediaAttribute) {
-            expect(JSON.stringify(styleTags)).to.equal(JSON.stringify(createStyleTags(mediaAttribute)));
+        if (shouldModify) {
+            expect(JSON.stringify(styleTags)).to.not.equal(JSON.stringify(createStyleTags(modifyInfo)));
         } else {
-            expect(JSON.stringify(styleTags)).to.not.equal(JSON.stringify(createStyleTags(mediaAttribute)));
+            expect(JSON.stringify(styleTags)).to.equal(JSON.stringify(createStyleTags(modifyInfo)));
         }
     };
 
@@ -114,7 +122,13 @@ describe("AsyncCssPlugin", () => {
     });
 
     describe("apply", () => {
-        it("should not modify a link with the media attribute", createMochaFunc("media"));
-        it("should modify a link without the media attribute", createMochaFunc());
+        it("should modify a link without the media attribute", createMochaFunc(true, (i) => {
+            const { styles } = i.assetTags;
+
+            if (styles[0]) {
+                styles[0].attributes["media"] = undefined;
+            }
+        }));
+        it("should not modify a link with the media attribute", createMochaFunc(false));
     });
 });
