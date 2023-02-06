@@ -22,7 +22,9 @@ const createFakeCompiler = () => {
     return result;
 };
 
-const createStyleTags = (mediaAttribute?: "media", tagName?: "meta" | "script") => ({
+type AssetTagsInfo = Parameters<HtmlWebpackPlugin.Hooks["alterAssetTags"]["promise"]>[0];
+
+const createStyleTags = (mediaAttribute?: "media", tagName?: "meta" | "script"): AssetTagsInfo => ({
     assetTags: {
         scripts: new Array<HtmlWebpackPlugin.HtmlTagObject>(),
         styles: [
