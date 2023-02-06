@@ -35,7 +35,7 @@ class AsyncCssPlugin {
     private readonly logLevel: MessageType;
 
     private checkHook(compilation: Compilation) {
-        const alterAssetTags = HtmlWebpackPlugin?.getHooks?.(compilation)?.alterAssetTags;
+        const alterAssetTags = HtmlWebpackPlugin.getHooks?.(compilation).alterAssetTags;
 
         if (!alterAssetTags?.tap) {
             throw new Error("Cannot get alterAssetTags hook. Is your config missing the HtmlWebpackPlugin?");
