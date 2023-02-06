@@ -69,6 +69,25 @@ const createMochaFunc = (mediaAttribute?: "media"): Mocha.AsyncFunc =>
 
 
 describe("AsyncCssPlugin", () => {
+    it("should throw when alterAssetTags hook is not available", () => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+        const sut = new AsyncCssPlugin({ logLevel: "info" });
+
+        const fakeCompiler = createFakeCompiler();
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+        sut.apply(fakeCompiler);
+        const taps = [...fakeCompiler.taps.values()];
+        expect(taps.length).to.equal(1);
+        // Since compilation is just used as key in a WeakMap, we can use an empty object.
+        const compilation = {} as unknown as Compilation;
+        HtmlWebpackPlugin.getHooks(compilation).alterAssetTags =
+            undefined as unknown as HtmlWebpackPlugin.Hooks["alterAssetTags"];
+        expect(() => taps[0]?.(compilation)).to.throw(
+            Error,
+            "Cannot get alterAssetTags hook. Is your config missing the HtmlWebpackPlugin?",
+        );
+    });
+
     describe("constructor", () => {
         it("should throw for invalid options", () => {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return
