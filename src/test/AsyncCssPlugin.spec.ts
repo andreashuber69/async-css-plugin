@@ -24,8 +24,7 @@ const createFakeCompiler = () => {
 
 type AssetTagsInfo = Parameters<HtmlWebpackPlugin.Hooks["alterAssetTags"]["promise"]>[0];
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const createStyleTags = (modifyInfo: (info: AssetTagsInfo) => void = () => {}): AssetTagsInfo => {
+const createStyleTags = (modifyInfo?: (info: AssetTagsInfo) => void): AssetTagsInfo => {
     const result = {
         assetTags: {
             scripts: new Array<HtmlWebpackPlugin.HtmlTagObject>(),
@@ -48,13 +47,12 @@ const createStyleTags = (modifyInfo: (info: AssetTagsInfo) => void = () => {}): 
         plugin: new HtmlWebpackPlugin(),
     };
 
-    modifyInfo(result);
+    modifyInfo?.(result);
 
     return result;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const createMochaFunc = (shouldModify: boolean, modifyInfo: (info: AssetTagsInfo) => void = () => {}) =>
+const createMochaFunc = (shouldModify: boolean, modifyInfo?: (info: AssetTagsInfo) => void) =>
     async () => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
         const sut = new AsyncCssPlugin({ logLevel: "info" });
