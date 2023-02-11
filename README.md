@@ -6,7 +6,7 @@
   <a href="https://www.npmjs.com/package/async-css-plugin">
     <img src="https://img.shields.io/npm/v/async-css-plugin" alt="NPM Version">
   </a>
-  <a href="https://github.com/andreashuber69/async-css-plugin/releases/latest">
+  <a href="https://github.com/andreashuber69/async-css-plugin/releases">
     <img src="https://img.shields.io/github/release-date/andreashuber69/async-css-plugin.svg" alt="Release Date">
   </a>
   <a href="https://travis-ci.com/github/andreashuber69/async-css-plugin">
@@ -16,10 +16,10 @@
     <img src="https://img.shields.io/github/issues-raw/andreashuber69/async-css-plugin.svg" alt="Issues">
   </a>
   <a href="https://codeclimate.com/github/andreashuber69/async-css-plugin/maintainability">
-    <img src="https://api.codeclimate.com/v1/badges/b071b5fbd1aaf7aafbd6/maintainability" alt="Code Climate Maintainability">
+    <img src="https://api.codeclimate.com/v1/badges/b071b5fbd1aaf7aafbd6/maintainability" alt="Maintainability">
   </a>
   <a href="https://coveralls.io/github/andreashuber69/async-css-plugin?branch=develop">
-    <img src="https://coveralls.io/repos/github/andreashuber69/async-css-plugin/badge.svg?branch=develop" alt="Coveralls">
+    <img src="https://coveralls.io/repos/github/andreashuber69/async-css-plugin/badge.svg?branch=develop" alt="Coverage">
   </a>
   <a href="https://github.com/andreashuber69/async-css-plugin/blob/develop/LICENSE">
     <img src="https://img.shields.io/github/license/andreashuber69/async-css-plugin.svg" alt="License">

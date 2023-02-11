@@ -5,5 +5,4 @@ module.exports = {
         browser: true,
     },
     extends: ["@andreashuber69"],
-    ignorePatterns: ["/**/*.config.js"],
 };

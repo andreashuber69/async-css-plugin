@@ -35,7 +35,7 @@ class AsyncCssPlugin {
     private readonly logLevel: MessageType;
 
     private checkHook(compilation: Compilation) {
-        const alterAssetTags = HtmlWebpackPlugin?.getHooks?.(compilation)?.alterAssetTags;
+        const alterAssetTags = HtmlWebpackPlugin.getHooks?.(compilation).alterAssetTags;
 
         if (!alterAssetTags?.tap) {
             throw new Error("Cannot get alterAssetTags hook. Is your config missing the HtmlWebpackPlugin?");
@@ -46,9 +46,9 @@ class AsyncCssPlugin {
 
     private checkTags<Output extends { readonly outputName: string }>(
         output: Output,
-        tags: readonly HtmlWebpackPlugin.HtmlTagObject[] | null | undefined,
+        styleTags: readonly HtmlWebpackPlugin.HtmlTagObject[] | null | undefined,
     ) {
-        for (const { tagName, attributes } of tags ?? []) {
+        for (const { tagName, attributes } of styleTags ?? []) {
             if ((tagName === "link") && (attributes?.["rel"] === "stylesheet")) {
                 this.processTag(output.outputName, attributes);
             }

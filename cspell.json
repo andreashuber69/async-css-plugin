@@ -1,23 +1,17 @@
 {
   "version": "0.2",
-  "language": "en",
   "words": [
     "Andreas",
-    "codebeat",
     "unstyled"
   ],
-  "flagWords": [],
   "dictionaries": [
-    "css",
+    "bash",
     "typescript"
   ],
   "ignorePaths": [
-    "**/*.svg",
-    "coverage/**",
-    "dist/**",
-    "node_modules/**",
-    "package.json",
-    "package-lock.json",
-    "tsconfig.json"
+    "/cc-test-reporter",
+    "/coverage/**",
+    "/dist/**",
+    "/package.json"
   ]
 }
