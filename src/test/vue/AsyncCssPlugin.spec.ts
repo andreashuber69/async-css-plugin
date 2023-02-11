@@ -10,6 +10,7 @@ const createMochaFunc = (expectedMedia: string): Mocha.Func =>
     function create(done) {
         // eslint-disable-next-line @typescript-eslint/no-invalid-this
         this.timeout(0);
+
         exec(`cd ${__dirname} && npx vue-cli-service build`, (error) => {
             expect(Boolean(error)).to.equal(false);
             const outputPath = `${__dirname}/dist`;

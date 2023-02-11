@@ -88,8 +88,10 @@ describe("AsyncCssPlugin", () => {
         expect(taps.length).to.equal(1);
         // Since compilation is just used as key in a WeakMap, we can use an empty object.
         const compilation = {} as unknown as Compilation;
+
         HtmlWebpackPlugin.getHooks(compilation).alterAssetTags =
             undefined as unknown as HtmlWebpackPlugin.Hooks["alterAssetTags"];
+
         expect(() => taps[0]?.(compilation)).to.throw(
             Error,
             "Cannot get alterAssetTags hook. Is your config missing the HtmlWebpackPlugin?",
@@ -110,6 +112,7 @@ describe("AsyncCssPlugin", () => {
         it("should throw for invalid compiler", () => {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
             const sut = new AsyncCssPlugin();
+
             // eslint-disable-next-line max-len
             // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
             expect(() => sut.apply()).to.throw(
@@ -124,6 +127,7 @@ describe("AsyncCssPlugin", () => {
             "should do nothing when assetTags field is missing",
             createMochaFunc(false, (i) => (i.assetTags = undefined as unknown as AssetTagsInfo["assetTags"])),
         );
+
         it(
             "should do nothing when assetTags.styles field is missing",
             createMochaFunc(
@@ -131,6 +135,7 @@ describe("AsyncCssPlugin", () => {
                 (i) => (i.assetTags.styles = undefined as unknown as AssetTagsInfo["assetTags"]["styles"]),
             ),
         );
+
         it(
             "should do nothing when assetTags.styles field is missing",
             createMochaFunc(
@@ -138,6 +143,7 @@ describe("AsyncCssPlugin", () => {
                 (i) => (i.assetTags.styles = undefined as unknown as AssetTagsInfo["assetTags"]["styles"]),
             ),
         );
+
         it(
             "should do nothing when assetTags.styles[0].attributes field is missing",
             createMochaFunc(
@@ -152,6 +158,7 @@ describe("AsyncCssPlugin", () => {
                 },
             ),
         );
+
         it("should modify a link without the media attribute", createMochaFunc(true, (i) => {
             const { styles } = i.assetTags;
 
@@ -159,6 +166,7 @@ describe("AsyncCssPlugin", () => {
                 styles[0].attributes["media"] = undefined;
             }
         }));
+
         it("should not modify a link with the media attribute", createMochaFunc(false));
     });
 });
