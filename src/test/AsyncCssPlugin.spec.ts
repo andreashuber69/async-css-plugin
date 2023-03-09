@@ -48,7 +48,6 @@ const createStyleTags = (modifyInfo?: (info: AssetTagsInfo) => void): AssetTagsI
     };
 
     modifyInfo?.(result);
-
     return result;
 };
 
