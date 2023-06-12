@@ -1,8 +1,13 @@
 {
+  // node-lts-strictest is deprecated in favor of using an array to combine node-lts and strictest but doing so
+  // currently leads to problems with the eslint-plugin-import package, see
+  // https://github.com/import-js/eslint-plugin-import/issues/2751
   "extends": "@tsconfig/node-lts-strictest/tsconfig.json",
   "compilerOptions": {
     "checkJs": false,
     "declaration": true,
+    // The base sets importsNotUsedAsValues to "error" leading to a depreciation warning with TS >= 5.0. Since the new
+    // verbatimModuleSyntax option does not seem to work with CommonJS modules, we can only ignore the warning for now.
     "ignoreDeprecations": "5.0",
     "outDir": "dist",
     "sourceMap": true,
