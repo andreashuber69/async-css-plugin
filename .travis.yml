@@ -1,9 +1,9 @@
 # https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin
 os: linux
-dist: xenial
+dist: focal
 language: node_js
 node_js:
-- 16
+- lts/*
 
 branches:
   only:
