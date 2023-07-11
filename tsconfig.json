@@ -9,13 +9,13 @@
     // The base sets importsNotUsedAsValues to "error" leading to a depreciation warning with TS >= 5.0. Since the new
     // verbatimModuleSyntax option does not seem to work with CommonJS modules, we can only ignore the warning for now.
     "ignoreDeprecations": "5.0",
-    // The base erroneously sets "node", see https://github.com/tsconfig/bases/issues/204
-    "moduleResolution": "node16",
     // There is no strictest config for node 12, which is why we're extending lts-strictest and set the differing
     // options (lib and target) manually. These can be found by comparing
     // https://www.npmjs.com/package/@tsconfig/node-lts-strictest?activeTab=code with
     // https://www.npmjs.com/package/@tsconfig/node12?activeTab=code
     "lib": ["es2019", "es2020.promise", "es2020.bigint", "es2020.string"],
+    // The base erroneously sets "node", see https://github.com/tsconfig/bases/issues/204
+    "moduleResolution": "node16",
     "outDir": "dist",
     "sourceMap": true,
     "target": "es2019"
