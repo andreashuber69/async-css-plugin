@@ -13,12 +13,13 @@
     // options (lib and target) manually. These can be found by comparing
     // https://www.npmjs.com/package/@tsconfig/node-lts-strictest?activeTab=code with
     // https://www.npmjs.com/package/@tsconfig/node12?activeTab=code
-    "lib": ["es2019", "es2020.promise", "es2020.bigint", "es2020.string"],
-    // The base erroneously sets "node", see https://github.com/tsconfig/bases/issues/204
-    "moduleResolution": "node16",
+    "lib": ["ES2019", "ES2020.Promise", "ES2020.BigInt", "ES2020.String"],
+    // https://devblogs.microsoft.com/typescript/announcing-typescript-5-2/#module-and-moduleresolution-must-match-under-recent-node-js-settings
+    "module": "Node16",
+    "moduleResolution": "Node16",
     "outDir": "dist",
     "sourceMap": true,
-    "target": "es2019"
+    "target": "ES2019"
   },
   "include": [
     "src/**/*"
