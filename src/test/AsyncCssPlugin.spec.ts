@@ -1,5 +1,6 @@
 // https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin
 import { expect } from "chai";
+// eslint-disable-next-line @typescript-eslint/naming-convention
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import type { Compilation } from "webpack";
 

@@ -1,5 +1,6 @@
 // https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin
 import { createApp } from "vue";
+// eslint-disable-next-line @typescript-eslint/naming-convention
 import App from "./App.vue";
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
