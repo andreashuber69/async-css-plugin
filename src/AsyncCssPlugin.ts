@@ -1,5 +1,4 @@
 // https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin
-// eslint-disable-next-line @typescript-eslint/naming-convention
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import type { Compilation, Compiler } from "webpack";
 
