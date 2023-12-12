@@ -1,5 +1,7 @@
 <h1 align="center">
-  <img width="128" src="https://raw.githubusercontent.com/andreashuber69/async-css-plugin/develop/doc/icon.svg?sanitize=true"><br>
+  <img
+    width="128" alt="logo"
+    src="https://raw.githubusercontent.com/andreashuber69/async-css-plugin/develop/doc/icon.svg?sanitize=true"><br>
   async-css-plugin
 </h1>
 <p align="center">
