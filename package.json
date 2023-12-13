@@ -42,9 +42,13 @@
     "preci": "npm run lint",
     "ci": "npm test"
   },
+  "overrides": {
+    "tsconfig-paths": "^4.2.0"
+  },
   "devDependencies": {
-    "@andreashuber69/eslint-config": "^1.1.70",
-    "@tsconfig/node-lts-strictest": "^18.12.1",
+    "@andreashuber69/eslint-config": "^1.1.73",
+    "@tsconfig/node12": "^12.1.0",
+    "@tsconfig/strictest": "^2.0.2",
     "@types/chai": "^4.3.11",
     "@types/jsdom": "^21.1.6",
     "@types/mocha": "^10.0.6",
