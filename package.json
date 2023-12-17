@@ -46,7 +46,7 @@
     "tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
-    "@andreashuber69/eslint-config": "^1.1.73",
+    "@andreashuber69/eslint-config": "^1.1.74",
     "@tsconfig/node12": "^12.1.0",
     "@tsconfig/strictest": "^2.0.2",
     "@types/chai": "^4.3.11",
@@ -65,8 +65,8 @@
     "mocha": "^10.2.0",
     "ts-mocha": "^10.0.0",
     "typescript": "^5.3.3",
-    "vite": "^5.0.8",
-    "vue": "^3.3.11",
+    "vite": "^5.0.10",
+    "vue": "^3.3.12",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
   },
