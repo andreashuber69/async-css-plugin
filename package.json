@@ -42,9 +42,6 @@
     "preci": "npm run lint",
     "ci": "npm test"
   },
-  "overrides": {
-    "tsconfig-paths": "^4.2.0"
-  },
   "devDependencies": {
     "@andreashuber69/eslint-config": "^1.1.80",
     "@tsconfig/node12": "^12.1.0",
