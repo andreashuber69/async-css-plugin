@@ -43,7 +43,7 @@
     "ci": "npm test"
   },
   "devDependencies": {
-    "@andreashuber69/eslint-config": "^1.1.82",
+    "@andreashuber69/eslint-config": "^1.1.84",
     "@tsconfig/node12": "^12.1.0",
     "@tsconfig/strictest": "^2.0.2",
     "@types/chai": "^4.3.11",
@@ -54,17 +54,17 @@
     "chai": "^4.4.1",
     "coveralls": "^3.1.1",
     "cspell": "^8.3.2",
-    "css-loader": "^6.9.1",
+    "css-loader": "^6.10.0",
     "html-webpack-plugin": "^5.6.0",
-    "jsdom": "^23.2.0",
-    "markdownlint-cli": "^0.38.0",
-    "mini-css-extract-plugin": "^2.7.7",
+    "jsdom": "^24.0.0",
+    "markdownlint-cli": "^0.39.0",
+    "mini-css-extract-plugin": "^2.8.0",
     "mocha": "^10.2.0",
     "ts-mocha": "^10.0.0",
     "typescript": "^5.3.3",
     "vite": "^5.0.12",
     "vue": "^3.4.15",
-    "webpack": "^5.89.0",
+    "webpack": "^5.90.1",
     "webpack-cli": "^5.1.4"
   },
   "peerDependencies": {
