@@ -1,6 +1,4 @@
 {
-  // The following only works with the eslint-plugin-import package due to an override in package.json, see
-  // https://github.com/import-js/eslint-plugin-import/issues/2751#issuecomment-1496216195
   "extends": [
     "@tsconfig/strictest/tsconfig",
     "@tsconfig/node12/tsconfig"
