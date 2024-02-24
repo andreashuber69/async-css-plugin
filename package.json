@@ -47,10 +47,10 @@
     "finish-release": "git flow release finish -p -m \"Finish release\" v`cat package.json | jq -r '.version'`"
   },
   "devDependencies": {
-    "@andreashuber69/eslint-config": "^1.1.90",
+    "@andreashuber69/eslint-config": "^1.1.92",
     "@tsconfig/node12": "^12.1.1",
     "@tsconfig/strictest": "^2.0.3",
-    "@types/chai": "^4.3.11",
+    "@types/chai": "^4.3.12",
     "@types/jsdom": "^21.1.6",
     "@types/mocha": "^10.0.6",
     "@vue/cli-service": "^5.0.8",
