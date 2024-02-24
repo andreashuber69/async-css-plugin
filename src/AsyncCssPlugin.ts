@@ -2,7 +2,7 @@
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import type { Compilation, Compiler } from "webpack";
 
-import type { MessageType, Options } from "./Options";
+import type { MessageType, Options } from "./Options.js";
 
 class AsyncCssPlugin {
     public constructor(options?: Options) {

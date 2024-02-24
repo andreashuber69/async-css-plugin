@@ -15,6 +15,5 @@ const findElement = <T extends { readonly rel: string }>(collection: HTMLCollect
 export const getLinkProperties = (htmlPath: string) => {
     const { window } = new JSDOM(readFileSync(htmlPath));
     const { href, media } = findElement(window.document.head.children, window.HTMLLinkElement);
-
     return { href, media } as const;
 };

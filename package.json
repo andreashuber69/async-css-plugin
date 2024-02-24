@@ -1,6 +1,6 @@
 {
   "name": "async-css-plugin",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "description": "Minimal webpack plugin that transforms links to css files such that they are loaded asynchronously.",
   "keywords": [
     "async",
@@ -12,7 +12,7 @@
   "homepage": "https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin",
   "repository": {
     "type": "git",
-    "url": "https://github.com/andreashuber69/async-css-plugin.git"
+    "url": "git+https://github.com/andreashuber69/async-css-plugin.git"
   },
   "bugs": {
     "url": "https://github.com/andreashuber69/async-css-plugin/issues"
@@ -22,7 +22,7 @@
     "name": "Andreas Huber"
   },
   "engines": {
-    "node": ">=12.22.0"
+    "node": ">=12.22"
   },
   "main": "dist/AsyncCssPlugin.js",
   "files": [
@@ -38,33 +38,38 @@
     "pretest-no-coverage": "npm run build",
     "test-no-coverage": "ts-mocha 'src/test/**/*.spec.ts'",
     "test": "c8 --exclude 'src/test/**' --reporter=text --reporter=lcov npm run test-no-coverage",
-    "show-coverage": "alive-server 'coverage/lcov-report'",
+    "show-coverage": "vite 'coverage/lcov-report' --logLevel error --open",
     "preci": "npm run lint",
-    "ci": "npm test"
+    "ci": "npm test",
+    "preversion": "git checkout develop && git push && git pull",
+    "version": "git flow release start v`cat package.json | jq -r '.version' && git stash push >/dev/null 2>&1` && git stash pop",
+    "postversion": "git commit -a -m \"Start release v`cat package.json | jq -r '.version'`\"",
+    "finish-release": "git flow release finish -p -m \"Finish release\" v`cat package.json | jq -r '.version'`"
   },
   "devDependencies": {
-    "@andreashuber69/eslint-config": "^1.1.8",
-    "@tsconfig/node-lts-strictest": "^18.12.1",
-    "@types/chai": "^4.3.4",
-    "@types/jsdom": "^21.1.0",
-    "@types/mocha": "^10.0.1",
+    "@andreashuber69/eslint-config": "^1.1.90",
+    "@tsconfig/node12": "^12.1.1",
+    "@tsconfig/strictest": "^2.0.3",
+    "@types/chai": "^4.3.11",
+    "@types/jsdom": "^21.1.6",
+    "@types/mocha": "^10.0.6",
     "@vue/cli-service": "^5.0.8",
-    "alive-server": "^1.2.9",
-    "c8": "^7.12.0",
-    "chai": "^4.3.7",
+    "c8": "^9.1.0",
+    "chai": "^4.4.1",
     "coveralls": "^3.1.1",
-    "cspell": "^6.23.0",
-    "css-loader": "^6.7.3",
-    "html-webpack-plugin": "^5.5.0",
-    "jsdom": "^21.1.0",
-    "markdownlint-cli": "^0.33.0",
-    "mini-css-extract-plugin": "^2.7.2",
-    "mocha": "^10.2.0",
+    "cspell": "^8.4.1",
+    "css-loader": "^6.10.0",
+    "html-webpack-plugin": "^5.6.0",
+    "jsdom": "^24.0.0",
+    "markdownlint-cli": "^0.39.0",
+    "mini-css-extract-plugin": "^2.8.0",
+    "mocha": "^10.3.0",
     "ts-mocha": "^10.0.0",
-    "typescript": "^4.9.5",
-    "vue": "^3.2.47",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4",
+    "vue": "^3.4.19",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4"
   },
   "peerDependencies": {
     "html-webpack-plugin": ">=3.2.0",

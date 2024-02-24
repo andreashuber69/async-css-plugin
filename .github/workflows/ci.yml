@@ -1,0 +1,11 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - "**"
+
+jobs:
+  ci:
+    uses: andreashuber69/actions/.github/workflows/ubuntu-latest-node-lts-ci.yml@master
+    secrets: inherit
