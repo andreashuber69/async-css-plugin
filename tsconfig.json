@@ -4,12 +4,11 @@
     "@tsconfig/node12/tsconfig"
   ],
   "compilerOptions": {
-    "checkJs": false,
-    "declaration": true,
-    "outDir": "dist",
-    "sourceMap": true
+    "noEmit": true,
+    "resolveJsonModule": true
   },
   "include": [
-    "src/**/*"
+    "./.eslintrc.cjs",
+    "./*.ts",
   ]
 }
