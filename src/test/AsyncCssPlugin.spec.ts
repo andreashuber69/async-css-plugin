@@ -7,7 +7,7 @@ import type { Compilation } from "webpack";
 // will complain that it cannot overwrite an input file.
 // eslint-disable-next-line @stylistic/max-len
 // eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-assignment, import/no-commonjs, @typescript-eslint/no-require-imports
-const AsyncCssPlugin = require("../../dist/AsyncCssPlugin");
+const AsyncCssPlugin = require("../..");
 
 const createFakeCompiler = () => {
     const result = {
