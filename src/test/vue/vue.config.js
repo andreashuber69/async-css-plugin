@@ -1,5 +1,5 @@
 // https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin
-const AsyncCssPlugin = require("../../../dist/AsyncCssPlugin");
+const AsyncCssPlugin = require("../../..");
 
 module.exports = {
     configureWebpack: config => {
