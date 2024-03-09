@@ -10,6 +10,7 @@
   ],
   "cSpell.import": ["../cspell.json"],
   "files.autoSave": "onFocusChange",
+  "editor.rulers": [120],
   "git.confirmSync": false,
   "typescript.tsdk": "./node_modules/typescript/lib",
   "typescript.preferences.quoteStyle": "double"

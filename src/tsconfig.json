@@ -8,7 +8,7 @@
     "sourceMap": true
   },
   "include": [
-    "./**/*.js",
-    "./**/*.ts"
+    "**/*.js",
+    "**/*.ts"
   ]
 }
