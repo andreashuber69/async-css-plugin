@@ -46,7 +46,7 @@
     "finish-release": "git flow release finish -p -m \"chore: finish release\" v`cat package.json | jq -r '.version'`"
   },
   "devDependencies": {
-    "@andreashuber69/eslint-config": "^1.1.94",
+    "@andreashuber69/eslint-config": "^1.1.95",
     "@tsconfig/node12": "^12.1.1",
     "@tsconfig/strictest": "^2.0.3",
     "@types/chai": "^4.3.12",
@@ -65,7 +65,7 @@
     "mocha": "^10.3.0",
     "ts-mocha": "^10.0.0",
     "typescript": "^5.4.2",
-    "vite": "^5.1.5",
+    "vite": "^5.1.6",
     "vue": "^3.4.21",
     "webpack": "^5.90.3",
     "webpack-cli": "^5.1.4"
