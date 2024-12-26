@@ -30,7 +30,9 @@ const createMochaFunc = (options: Configuration, expectedMedia: string): Mocha.F
 
 describe("AsyncCssPlugin", () => {
     describe("webpack", () => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         it("should not modify index.html", createMochaFunc(standardOptions, ""));
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         it("should modify index.html", createMochaFunc(asyncOptions, "print"));
     });
 });

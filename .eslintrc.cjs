@@ -9,4 +9,10 @@ module.exports = {
     },
     extends: ["@andreashuber69"],
     ignorePatterns: ["/coverage/", "/dist/", "/src/test/**/*.config.js"],
+    overrides: [
+        {
+            extends: ["plugin:@typescript-eslint/disable-type-checked"],
+            files: ["./src/test/webpack/index.js", "./src/test/vue/main.js"],
+        },
+    ],
 };

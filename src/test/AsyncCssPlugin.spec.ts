@@ -7,7 +7,7 @@ import type { Compilation } from "webpack";
 // We need to use plain old require here, so that the compiled output is only loaded during the test run. Otherwise, tsc
 // will complain that it cannot overwrite an input file.
 // eslint-disable-next-line @stylistic/max-len
-// eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-assignment, import/no-commonjs, @typescript-eslint/no-require-imports
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, import/no-commonjs, @typescript-eslint/no-require-imports
 const AsyncCssPlugin = require("../..");
 
 const createFakeCompiler = () => {
@@ -63,7 +63,9 @@ const createMochaFunc = (shouldModify: boolean, modifyInfo?: (info: AssetTagsInf
         const taps = [...fakeCompiler.taps.values()];
         expect(taps.length).to.equal(1);
         // Since compilation is just used as key in a WeakMap, we can use an empty object.
-        const compilation = {} as unknown as Compilation;
+        // eslint-disable-next-line @stylistic/max-len
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion, @typescript-eslint/consistent-type-assertions
+        const compilation = {} as Compilation;
         taps[0]?.(compilation);
         const styleTags = createStyleTags(modifyInfo);
         await HtmlWebpackPlugin.getHooks(compilation).alterAssetTags.promise(styleTags);
@@ -87,9 +89,12 @@ describe("AsyncCssPlugin", () => {
         const taps = [...fakeCompiler.taps.values()];
         expect(taps.length).to.equal(1);
         // Since compilation is just used as key in a WeakMap, we can use an empty object.
-        const compilation = {} as unknown as Compilation;
+        // eslint-disable-next-line @stylistic/max-len
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion, @typescript-eslint/consistent-type-assertions
+        const compilation = {} as Compilation;
 
         HtmlWebpackPlugin.getHooks(compilation).alterAssetTags =
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
             undefined as unknown as HtmlWebpackPlugin.Hooks["alterAssetTags"];
 
         expect(() => taps[0]?.(compilation)).to.throw(
@@ -125,6 +130,7 @@ describe("AsyncCssPlugin", () => {
     describe("apply", () => {
         it(
             "should do nothing when assetTags field is missing",
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
             createMochaFunc(false, (i) => (i.assetTags = undefined as unknown as AssetTagsInfo["assetTags"])),
         );
 
@@ -132,6 +138,7 @@ describe("AsyncCssPlugin", () => {
             "should do nothing when assetTags.styles field is missing",
             createMochaFunc(
                 false,
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
                 (i) => (i.assetTags.styles = undefined as unknown as AssetTagsInfo["assetTags"]["styles"]),
             ),
         );
@@ -140,6 +147,7 @@ describe("AsyncCssPlugin", () => {
             "should do nothing when assetTags.styles field is missing",
             createMochaFunc(
                 false,
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
                 (i) => (i.assetTags.styles = undefined as unknown as AssetTagsInfo["assetTags"]["styles"]),
             ),
         );
@@ -153,7 +161,8 @@ describe("AsyncCssPlugin", () => {
 
                     if (styles[0]) {
                         styles[0].attributes =
-                            undefined as unknown as AssetTagsInfo["assetTags"]["styles"][0]["attributes"];
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+                        undefined as unknown as AssetTagsInfo["assetTags"]["styles"][0]["attributes"];
                     }
                 },
             ),
