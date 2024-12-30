@@ -1,6 +1,6 @@
 // https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin
 
-const AsyncCssPlugin = require("../../.."); // Added for async CSS loading
+const AsyncCssPlugin = require("../AsyncCssPlugin.js"); // Added for async CSS loading
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 

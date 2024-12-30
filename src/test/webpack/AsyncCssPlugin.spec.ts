@@ -10,9 +10,9 @@ import webpack from "webpack";
 import { getLinkProperties } from "../getLinkProperties";
 
 // @ts-expect-error TS7016
-import asyncOptions from "./async.config";
+import asyncOptions from "./async.config.js";
 // @ts-expect-error TS7016
-import standardOptions from "./standard.config";
+import standardOptions from "./standard.config.js";
 
 
 const createMochaFunc = (options: Configuration, expectedMedia: string): Mocha.Func =>

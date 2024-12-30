@@ -4,11 +4,8 @@ import { expect } from "chai";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import type { Compilation } from "webpack";
 
-// We need to use plain old require here, so that the compiled output is only loaded during the test run. Otherwise, tsc
-// will complain that it cannot overwrite an input file.
-// eslint-disable-next-line @stylistic/max-len
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, import/no-commonjs, @typescript-eslint/no-require-imports
-const AsyncCssPlugin = require("../..");
+// @ts-expect-error TS7016
+import AsyncCssPlugin from "./AsyncCssPlugin.js";
 
 const createFakeCompiler = () => {
     const result = {
