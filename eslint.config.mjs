@@ -5,9 +5,6 @@ import tsEslint from "typescript-eslint";
 const config = tsEslint.config([
     ...generalConfig,
     {
-        files: ["src/**/*.ts"],
-    },
-    {
         ignores: ["coverage/", "dist/", "src/test/**/*.js"],
     },
     {
