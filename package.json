@@ -36,7 +36,7 @@
     "lint": "eslint",
     "build": "tsc",
     "test-no-coverage": "ts-mocha 'src/test/**/*.spec.ts'",
-    "pretest": "npm run build",
+    "pretest-no-coverage": "npm run build",
     "test": "c8 --exclude 'src/test/**' --reporter=text --reporter=lcov npm run test-no-coverage",
     "show-coverage": "vite 'coverage/lcov-report' --logLevel error --open",
     "ci": "npm run lint && npm test",
