@@ -8,8 +8,10 @@ import { describe, expect, it } from "vitest";
 import { getLinkProperties } from "../getLinkProperties.js";
 
 describe("AsyncCssPlugin", () => {
-    describe("vue", () => {
-        it("should modify index.html", async () => {
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
+    describe(
+        "vue",
+        () => it("should modify index.html", async () => {
             process.env["NODE_ENV"] = "production";
             const service = new Service(__dirname);
             await service.run("build");
@@ -18,6 +20,9 @@ describe("AsyncCssPlugin", () => {
             expect(href).to.equal("/css/app.5e6ccbdf.css");
             expect(media).to.equal("print");
             rmSync(outputPath, { recursive: true });
-        });
-    });
+        }),
+        {
+            timeout: 10_000,
+        },
+    );
 });

@@ -1,12 +1,13 @@
 // https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin
 
-const AsyncCssPlugin = require("./AsyncCssPlugin.js");
+// eslint-disable-next-line n/no-deprecated-api
+if (!require.extensions[".ts"]) {
+    require("ts-node").register({
+        project: "./tsconfig.json",
+        compilerOptions: {
+            module: "commonjs",
+        },
+    });
+}
 
-module.exports = {
-    configureWebpack: config => {
-        config.entry.app = "./main.js";
-    },
-    chainWebpack: config => {
-        config.plugin("async-css-plugin").use(AsyncCssPlugin, [{ logLevel: "info" }]);
-    },
-};
+module.exports = require("./vue.config.ts").default;
