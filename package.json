@@ -24,17 +24,16 @@
   "engines": {
     "node": ">=12.22"
   },
-  "main": "dist/AsyncCssPlugin.js",
+  "main": "dist/AsyncCssPlugin.mjs",
   "files": [
     "/dist/",
-    "!/dist/test/**",
     "!/**/*.map",
     "/*.md"
   ],
   "scripts": {
     "prelint": "cspell '**' && markdownlint '**/*.md'",
     "lint": "eslint",
-    "build": "tsc",
+    "build": "tsc && vite build",
     "test-no-coverage": "vitest --run",
     "test": "vitest --run --coverage",
     "show-coverage": "vite 'coverage/lcov-report' --logLevel error --open",
@@ -62,6 +61,7 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3",
     "vite": "^6.0.7",
+    "vite-plugin-dts": "^4.5.0",
     "vitest": "^3.0.2",
     "vue": "^3.5.13",
     "webpack": "^5.97.1"

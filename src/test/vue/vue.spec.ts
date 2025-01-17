@@ -8,7 +8,6 @@ import { describe, expect, it } from "vitest";
 import { getLinkProperties } from "../getLinkProperties.js";
 
 describe("AsyncCssPlugin", () => {
-    // eslint-disable-next-line @typescript-eslint/no-deprecated
     describe(
         "vue",
         () => it("should modify index.html", async () => {
@@ -21,8 +20,5 @@ describe("AsyncCssPlugin", () => {
             expect(media).to.equal("print");
             rmSync(outputPath, { recursive: true });
         }),
-        {
-            timeout: 10_000,
-        },
     );
 });
