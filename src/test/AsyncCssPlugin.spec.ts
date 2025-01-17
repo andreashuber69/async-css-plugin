@@ -1,11 +1,11 @@
 // https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin
 
-import { expect } from "chai";
 import HtmlWebpackPlugin from "html-webpack-plugin";
-import type { Compilation } from "webpack";
+import { describe, expect, it } from "vitest";
+import type { Compilation, Compiler } from "webpack";
 
-// @ts-expect-error TS7016
-import AsyncCssPlugin from "./AsyncCssPlugin.js";
+import AsyncCssPlugin from "../AsyncCssPlugin.js";
+import type { MessageType } from "../Options.js";
 
 const createFakeCompiler = () => {
     const result = {
@@ -17,7 +17,8 @@ const createFakeCompiler = () => {
         taps: new Map<string, (compilation: Compilation) => void>(),
     };
 
-    return result;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+    return result as unknown as (Compiler & { taps: Map<string, (compilation: Compilation) => void> });
 };
 
 type AssetTagsInfo = Parameters<HtmlWebpackPlugin.Hooks["alterAssetTags"]["promise"]>[0];
@@ -51,11 +52,9 @@ const createStyleTags = (modifyInfo?: (info: AssetTagsInfo) => void): AssetTagsI
 
 const createMochaFunc = (shouldModify: boolean, modifyInfo?: (info: AssetTagsInfo) => void) =>
     async () => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
         const sut = new AsyncCssPlugin({ logLevel: "info" });
 
         const fakeCompiler = createFakeCompiler();
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         sut.apply(fakeCompiler);
         const taps = [...fakeCompiler.taps.values()];
         expect(taps.length).to.equal(1);
@@ -77,11 +76,9 @@ const createMochaFunc = (shouldModify: boolean, modifyInfo?: (info: AssetTagsInf
 
 describe("AsyncCssPlugin", () => {
     it("should throw when alterAssetTags hook is not available", () => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
         const sut = new AsyncCssPlugin({ logLevel: "info" });
 
         const fakeCompiler = createFakeCompiler();
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         sut.apply(fakeCompiler);
         const taps = [...fakeCompiler.taps.values()];
         expect(taps.length).to.equal(1);
@@ -102,8 +99,8 @@ describe("AsyncCssPlugin", () => {
 
     describe("constructor", () => {
         it("should throw for invalid options", () => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return
-            expect(() => new AsyncCssPlugin({ logLevel: "whatever" })).to.throw(
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+            expect(() => new AsyncCssPlugin({ logLevel: "whatever" as unknown as MessageType })).to.throw(
                 Error,
                 "options.logLevel is invalid: whatever.",
             );
@@ -112,12 +109,9 @@ describe("AsyncCssPlugin", () => {
 
     describe("apply", () => {
         it("should throw for invalid compiler", () => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
             const sut = new AsyncCssPlugin();
 
-            // eslint-disable-next-line @stylistic/max-len
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-            expect(() => sut.apply()).to.throw(
+            expect(() => sut.apply(undefined)).to.throw(
                 Error,
                 "compiler?.hooks?.compilation?.tap is undefined. Is your webpack package version too old?",
             );

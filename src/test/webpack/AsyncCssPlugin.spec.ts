@@ -3,7 +3,7 @@
 import { rmSync } from "node:fs";
 import { join } from "node:path";
 
-import { expect } from "chai";
+import { describe, expect, it } from "vitest";
 import type { Configuration } from "webpack";
 import webpack from "webpack";
 
@@ -14,10 +14,13 @@ import asyncOptions from "./async.config.js";
 // @ts-expect-error TS7016
 import standardOptions from "./standard.config.js";
 
-
-const createMochaFunc = (options: Configuration, expectedMedia: string): Mocha.Func =>
-    (done) => webpack(options, (err, stats) => {
-        expect(Boolean(err)).to.equal(false);
+const checkWebpack = async (
+    options: Configuration,
+    expectedMedia: string,
+) => await new Promise<void>((resolve, reject) => webpack(options, (err, stats) => {
+    if (err) {
+        reject(err);
+    } else {
         expect(stats?.hasErrors()).to.equal(false);
         const outputPath = stats?.toJson().outputPath ?? "";
         expect(Boolean(outputPath)).to.equal(true);
@@ -25,14 +28,15 @@ const createMochaFunc = (options: Configuration, expectedMedia: string): Mocha.F
         expect(href).to.equal("main.css");
         expect(media).to.equal(expectedMedia);
         rmSync(outputPath, { recursive: true });
-        done();
-    });
+        resolve();
+    }
+}));
 
 describe("AsyncCssPlugin", () => {
     describe("webpack", () => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        it("should not modify index.html", createMochaFunc(standardOptions, ""));
+        it("should not modify index.html", async () => await checkWebpack(standardOptions, ""));
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        it("should modify index.html", createMochaFunc(asyncOptions, "print"));
+        it("should modify index.html", async () => await checkWebpack(asyncOptions, "print"));
     });
 });
