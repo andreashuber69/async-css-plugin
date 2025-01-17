@@ -6,7 +6,7 @@ import { promisify } from "node:util";
 
 import { describe, expect, it } from "vitest";
 
-import { getLinkProperties } from "../getLinkProperties";
+import { getLinkProperties } from "../getLinkProperties.js";
 
 const execAsync = promisify(exec);
 

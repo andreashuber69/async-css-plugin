@@ -7,10 +7,10 @@ import { describe, expect, it } from "vitest";
 import type { Configuration } from "webpack";
 import webpack from "webpack";
 
-import { getLinkProperties } from "../getLinkProperties";
+import { getLinkProperties } from "../getLinkProperties.js";
 
-import asyncOptions from "./async.config";
-import standardOptions from "./standard.config";
+import asyncOptions from "./async.config.js";
+import standardOptions from "./standard.config.js";
 
 const checkWebpack = async (
     options: Configuration,
