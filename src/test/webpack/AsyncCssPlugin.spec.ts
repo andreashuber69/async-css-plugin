@@ -9,10 +9,8 @@ import webpack from "webpack";
 
 import { getLinkProperties } from "../getLinkProperties";
 
-// @ts-expect-error TS7016
-import asyncOptions from "./async.config.js";
-// @ts-expect-error TS7016
-import standardOptions from "./standard.config.js";
+import asyncOptions from "./async.config";
+import standardOptions from "./standard.config";
 
 const checkWebpack = async (
     options: Configuration,
@@ -34,9 +32,7 @@ const checkWebpack = async (
 
 describe("AsyncCssPlugin", () => {
     describe("webpack", () => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         it("should not modify index.html", async () => await checkWebpack(standardOptions, ""));
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         it("should modify index.html", async () => await checkWebpack(asyncOptions, "print"));
     });
 });

@@ -1,18 +1,20 @@
 // https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin
 
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import type { Configuration } from "webpack";
 
-module.exports = {
-    entry: __dirname + "/index.js",
+// eslint-disable-next-line import/no-default-export
+export default {
+    entry: `${__dirname}/index.js`,
     output: {
-        path: __dirname + "/dist",
+        path: `${__dirname}/dist`,
         filename: "index_bundle.js",
     },
     module: {
         rules: [
             {
-                test: /\.css$/i,
+                test: /\.css$/iu,
                 use: [MiniCssExtractPlugin.loader, "css-loader"],
             },
         ],
@@ -21,4 +23,4 @@ module.exports = {
         new HtmlWebpackPlugin(),
         new MiniCssExtractPlugin(),
     ],
-};
+} satisfies Configuration;
