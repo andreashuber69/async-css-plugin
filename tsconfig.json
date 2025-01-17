@@ -1,9 +1,28 @@
 {
-  "extends": [
-    "@tsconfig/strictest/tsconfig",
-    "@tsconfig/node12/tsconfig"
-  ],
   "compilerOptions": {
+    "strict": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    "isolatedModules": true,
+
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+
+    "lib": ["es2019", "es2020.promise", "es2020.bigint", "es2020.string"],
+    "module": "node16",
+    "target": "es2019",
+
+    "moduleResolution": "node16",
+
     "checkJs": false,
     "declaration": true,
     "outDir": "dist",
