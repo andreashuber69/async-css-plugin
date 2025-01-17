@@ -37,6 +37,7 @@
     "build": "tsc",
     "pretest-no-coverage": "npm run build",
     "test-no-coverage": "vitest --run",
+    "pretest": "npm run build",
     "test": "vitest --run --coverage",
     "show-coverage": "vite 'coverage/lcov-report' --logLevel error --open",
     "ci": "npm run lint && npm test",
