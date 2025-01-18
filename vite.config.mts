@@ -9,7 +9,7 @@ export default defineConfig({
         lib: {
             entry: ["src/AsyncCssPlugin.ts"],
             fileName: "AsyncCssPlugin",
-            formats: ["es"],
+            formats: ["cjs"],
         },
         outDir: "dist",
         rollupOptions: {
