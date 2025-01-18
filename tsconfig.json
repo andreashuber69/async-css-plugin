@@ -1,4 +1,6 @@
 {
+  // ts-node seems to be unable to deal with extends, which is why we're inlining @tsconfig/strictest and
+  // @tsconfig/node18
   "compilerOptions": {
     "strict": true,
     "allowUnusedLabels": false,
