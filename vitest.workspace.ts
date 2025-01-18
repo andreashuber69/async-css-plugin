@@ -1,4 +1,4 @@
-// https://github.com/andreashuber69/kiss-worker/blob/develop/README.md
+// https://github.com/andreashuber69/async-css-plugin/blob/develop/README.md#----async-css-plugin
 
 import { defineWorkspace } from "vitest/config";
 
