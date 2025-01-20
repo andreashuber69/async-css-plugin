@@ -9,4 +9,4 @@ if (!require.extensions[".ts"]) {
     });
 }
 
-module.exports = require("./vue.config.ts").default;
+module.exports = require("./vueConfig.ts").default;
