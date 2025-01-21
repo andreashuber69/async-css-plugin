@@ -6,6 +6,6 @@ import config from "@andreashuber69/eslint-config";
 export default [
     ...config,
     {
-        ignores: ["coverage/", "dist/", "src/test/**/*.js"],
+        ignores: ["coverage/", "dist/"],
     },
 ];
