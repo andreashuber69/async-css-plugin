@@ -4,8 +4,8 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import { describe, expect, it } from "vitest";
 import type { Compilation, Compiler } from "webpack";
 
-import AsyncCssPlugin from "./AsyncCssPlugin.js";
-import type { MessageType } from "./Options.js";
+import AsyncCssPlugin from "./AsyncCssPlugin.ts";
+import type { MessageType } from "./Options.ts";
 
 const createFakeCompiler = () => {
     const result = {

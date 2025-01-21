@@ -3,7 +3,7 @@
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import type { Configuration } from "webpack";
-import AsyncCssPlugin from "../../AsyncCssPlugin.js";
+import AsyncCssPlugin from "../../AsyncCssPlugin.ts";
 
 // eslint-disable-next-line import/no-default-export
 export default {

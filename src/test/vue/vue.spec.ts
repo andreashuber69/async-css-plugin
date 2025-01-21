@@ -5,7 +5,7 @@ import Service from "@vue/cli-service";
 
 import { describe, expect, it } from "vitest";
 
-import { getLinkProperties } from "../getLinkProperties.js";
+import { getLinkProperties } from "../getLinkProperties.ts";
 
 describe("AsyncCssPlugin", () => {
     describe("vue", () => {
