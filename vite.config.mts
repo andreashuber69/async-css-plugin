@@ -7,23 +7,13 @@ import dts from "vite-plugin-dts";
 export default defineConfig({
     build: {
         lib: {
-            entry: ["src/AsyncCssPlugin.ts"],
-            fileName: "AsyncCssPlugin",
+            entry: ["src/index.ts"],
+            fileName: "index",
             formats: ["cjs"],
         },
         outDir: "dist",
-        rollupOptions: {
-            input: {
-                AsyncCssPlugin: "src/AsyncCssPlugin.ts",
-            },
-        },
         sourcemap: true,
         ssr: true,
     },
-    plugins: [
-        dts({
-            rollupTypes: true,
-            tsconfigPath: "tsconfig.json",
-        }),
-    ],
+    plugins: [dts({ rollupTypes: true })],
 });
