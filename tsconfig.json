@@ -1,6 +1,5 @@
 {
-  // ts-node seems to be unable to deal with extends, which is why we're inlining @tsconfig/strictest and
-  // @tsconfig/node18
+  // ts-node seems to be unable to deal with extends, which is why we're inlining @tsconfig/strictest
   "compilerOptions": {
     "strict": true,
     "allowUnusedLabels": false,
@@ -14,20 +13,14 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "isolatedModules": true,
+    "checkJs": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true,
+
     "allowImportingTsExtensions": true,
-
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "NodeNext",
-    "target": "ES2020",
-    "moduleResolution": "nodenext",
-
-    "checkJs": true,
-    "noEmit": true
-   },
-  "include": [
-    "src/**/*"
-  ]
+    "module": "Node16",
+    "noEmit": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*"]
 }
