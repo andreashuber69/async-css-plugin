@@ -19,8 +19,7 @@
 
     "allowImportingTsExtensions": true,
     "module": "Node16",
-    "noEmit": true,
-    "resolveJsonModule": true
+    "noEmit": true
   },
   "include": ["src/**/*"]
 }
