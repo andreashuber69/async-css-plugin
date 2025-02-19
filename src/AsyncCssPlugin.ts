@@ -75,4 +75,5 @@ class AsyncCssPlugin {
 }
 
 // eslint-disable-next-line import/no-default-export
-export { AsyncCssPlugin as default };
+export default AsyncCssPlugin;
+
