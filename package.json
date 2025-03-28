@@ -44,6 +44,7 @@
     "finish-release": "git flow release finish -p -m \"chore: finish release\" v`cat package.json | jq -r '.version'`"
   },
   "devDependencies": {
+    "@andreashuber69/eslint-config": "^2.1.7",
     "@types/jsdom": "^21.1.7",
     "@types/webpack": "^5.28.5",
     "@vitest/coverage-istanbul": "^3.0.9",
@@ -66,8 +67,5 @@
   "peerDependencies": {
     "html-webpack-plugin": ">=3.2.0",
     "webpack": ">=4.4.0"
-  },
-  "dependencies": {
-    "@andreashuber69/eslint-config": "^2.1.7"
   }
 }
