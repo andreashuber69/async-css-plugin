@@ -90,8 +90,8 @@ module.exports = {
 };
 ```
 
-If you started with webpack directly, e.g. as described
-[here](https://webpack.js.org/guides/getting-started/#basic-setup), then you've probably already created
+If you started with webpack directly, e.g. as described under
+[basic setup](https://webpack.js.org/guides/getting-started/#basic-setup), then you've probably already created
 *webpack.config.js* yourself. In this case, you first need to get webpack to generate HTML, with
 [html-webpack-plugin](https://webpack.js.org/plugins/html-webpack-plugin/). Moreover, for CSS to be
 generated into separate files it is recommended to use
